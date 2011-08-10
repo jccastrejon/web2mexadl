@@ -1,0 +1,1882 @@
+@relation mvc-training
+
+@attribute Type {java,jsp,xml,properties}
+@attribute ExternalAPI {playmodel,playcontroller,grailscontroller,roomodel,roocontroller,servlet,strutscontroller,persistence,serialization,none}
+@attribute Suffix {controller,service,context,servlet,web,form,dao,manager,application,admin,crud,config,datasource,cfg,action,listener,entity,bean,finder,none}
+@attribute Layer {model,view,controller}
+
+@data
+
+% -------- begin play -------- 
+
+% booking_war.WEB-INF.application.precompiled.java.Bootstrap : Model
+java,none,none,model
+
+% booking_war.WEB-INF.application.precompiled.java.controllers.Application : Model
+java,playcontroller,application,controller
+
+% booking_war.WEB-INF.application.precompiled.java.controllers.Hotels : Model
+java,playcontroller,none,controller
+
+% booking_war.WEB-INF.application.precompiled.java.controllers.PlayDocumentation : Model
+java,playcontroller,none,controller
+
+% booking_war.WEB-INF.application.precompiled.java.DocViewerPlugin : Model
+java,playcontroller,none,controller
+
+% booking_war.WEB-INF.application.precompiled.java.models.Booking : Model
+java,playmodel,none,model
+
+% booking_war.WEB-INF.application.precompiled.java.models.Hotel : Model
+java,playmodel,none,model
+
+% booking_war.WEB-INF.application.precompiled.java.models.User : Model
+java,playmodel,none,model
+
+% booking_war/WEB-INF/application/precompiled/templates/from_play/framework/templates/errors/404.xml : Controller
+xml,none,none,view
+
+% booking_war/WEB-INF/application/precompiled/templates/from_play/framework/templates/errors/500.xml : Controller
+xml,none,none,view
+
+% booking_war/WEB-INF/framework/templates/errors/404.xml : Controller
+xml,none,none,view
+
+% booking_war/WEB-INF/framework/templates/errors/500.xml : Controller
+xml,none,none,view
+
+% booking_war/WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+% chat_war.WEB-INF.application.precompiled.java.controllers.Chat : Model
+java,playcontroller,none,controller
+
+% chat_war.WEB-INF.application.precompiled.java.controllers.CRUD$Exclude : Model
+java,playcontroller,none,controller
+
+% chat_war.WEB-INF.application.precompiled.java.controllers.CRUD$For : Model
+java,playcontroller,none,controller
+
+% chat_war.WEB-INF.application.precompiled.java.controllers.CRUD$Hidden : Model
+java,playcontroller,none,controller
+
+% chat_war.WEB-INF.application.precompiled.java.controllers.CRUD$ObjectType$ObjectField : Model
+java,playcontroller,none,controller
+
+% chat_war.WEB-INF.application.precompiled.java.controllers.CRUD$ObjectType : Model
+java,playcontroller,none,controller
+
+% chat_war.WEB-INF.application.precompiled.java.controllers.CRUD : Model
+java,playcontroller,crud,controller
+
+% chat_war.WEB-INF.application.precompiled.java.controllers.PlayDocumentation : Model
+java,playcontroller,none,controller
+
+% chat_war.WEB-INF.application.precompiled.java.DocViewerPlugin : Model
+java,playcontroller,none,controller
+
+% chat_war.WEB-INF.application.precompiled.java.models.Message : Model
+java,playmodel,none,model
+
+% chat_war/WEB-INF/framework/templates/errors/404.xml : Controller
+xml,playmodel,none,view
+
+% chat_war/WEB-INF/framework/templates/errors/500.xml : Controller
+xml,playmodel,none,view
+
+% chat_war/WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+% forum_war.WEB-INF.application.precompiled.java.controllers.Application : Model
+java,playcontroller,application,controller
+
+% forum_war.WEB-INF.application.precompiled.java.controllers.Forums : Model
+java,playcontroller,none,controller
+
+% forum_war.WEB-INF.application.precompiled.java.controllers.PlayDocumentation : Model
+java,playcontroller,none,controller
+
+% forum_war.WEB-INF.application.precompiled.java.controllers.Secure : Model
+java,none,none,controller
+
+% forum_war.WEB-INF.application.precompiled.java.controllers.Topics : Model
+java,playcontroller,none,controller
+
+% forum_war.WEB-INF.application.precompiled.java.controllers.Users : Model
+java,playcontroller,none,controller
+
+% forum_war.WEB-INF.application.precompiled.java.DocViewerPlugin : Model
+java,playcontroller,none,controller
+
+% forum_war.WEB-INF.application.precompiled.java.models.Forum : Model
+java,playmodel,none,model
+
+% forum_war.WEB-INF.application.precompiled.java.models.Post : Model
+java,playmodel,none,model
+
+% forum_war.WEB-INF.application.precompiled.java.models.Topic : Model
+java,playmodel,none,model
+
+% forum_war.WEB-INF.application.precompiled.java.models.User : Model
+java,playmodel,none,model
+
+% forum_war.WEB-INF.application.precompiled.java.notifiers.Notifier : Model
+java,playmodel,none,model
+
+% forum_war/WEB-INF/framework/templates/errors/404.xml : Controller
+xml,none,none,view
+
+% forum_war/WEB-INF/framework/templates/errors/500.xml : Controller
+xml,none,none,view
+
+% forum_war/WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+% jobboard_war/WEB-INF/application/app/views/Application/index.xml : Controller
+xml,none,none,view
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.Administration : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.Application : Model
+java,playcontroller,application,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.Categories : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.Companies : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.CRUD$Exclude : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.CRUD$For : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.CRUD$Hidden : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.CRUD$ObjectType$ObjectField : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.CRUD$ObjectType : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.CRUD : Model
+java,playcontroller,crud,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.Jobs : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.PlayDocumentation : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.controllers.Tags : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.DocViewerPlugin : Model
+java,playcontroller,none,controller
+
+% jobboard_war.WEB-INF.application.precompiled.java.models.Category : Model
+java,playmodel,none,model
+
+% jobboard_war.WEB-INF.application.precompiled.java.models.Company : Model
+java,playmodel,none,model
+
+% jobboard_war.WEB-INF.application.precompiled.java.models.Job : Model
+java,playmodel,none,model
+
+% jobboard_war.WEB-INF.application.precompiled.java.models.Tag : Model
+java,playmodel,none,model
+
+% jobboard_war/WEB-INF/framework/templates/errors/404.xml : Controller
+xml,none,none,view
+
+% jobboard_war/WEB-INF/framework/templates/errors/500.xml : Controller
+xml,none,none,view
+
+% jobboard_war/WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+% twitter_war.WEB-INF.application.precompiled.java.controllers.Application : Model
+java,playcontroller,none,controller
+
+% twitter_war.WEB-INF.application.precompiled.java.controllers.PlayDocumentation : Model
+java,playcontroller,none,controller
+
+% twitter_war.WEB-INF.application.precompiled.java.DocViewerPlugin : Model
+java,playcontroller,none,controller
+
+% twitter_war.WEB-INF.application.precompiled.java.models.User : Model
+java,playmodel,none,model
+
+% twitter_war/WEB-INF/framework/templates/errors/404.xml : Controller
+xml,none,none,view
+
+% twitter_war/WEB-INF/framework/templates/errors/500.xml : Controller
+xml,none,none,view
+
+% twitter_war/WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+% validation_war.WEB-INF.application.precompiled.java.controllers.Application : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.controllers.PlayDocumentation : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.controllers.Sample1 : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.controllers.Sample2 : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.controllers.Sample3 : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.controllers.Sample4 : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.controllers.Sample5 : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.controllers.Sample6 : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.controllers.Sample7 : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.DocViewerPlugin : Model
+java,playcontroller,none,controller
+
+% validation_war.WEB-INF.application.precompiled.java.models.ComplicatedUser : Model
+java,playcontroller,none,model
+
+% validation_war.WEB-INF.application.precompiled.java.models.User : Model
+java,playmodel,none,model
+
+% validation_war.WEB-INF.application.precompiled.java.models.UserInformation : Model
+java,playmodel,none,model
+
+% validation_war/WEB-INF/framework/templates/errors/404.xml : Controller
+xml,none,none,view
+
+% validation_war/WEB-INF/framework/templates/errors/500.xml : Controller
+xml,none,none,view
+
+% validation_war/WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.Bootstrap : Model
+java,playcontroller,none,model
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Admin : Model
+java,playcontroller,admin,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Application : Model
+java,playcontroller,application,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Check : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Comments : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.CRUD$Exclude : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.CRUD$For : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.CRUD$Hidden : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.CRUD$ObjectType$ObjectField : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.CRUD$ObjectType : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.CRUD : Model
+java,playcontroller,crud,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.PlayDocumentation : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Posts : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Secure$Security : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Secure : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Security : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Tags : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.controllers.Users : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.DocViewerPlugin : Model
+java,playcontroller,none,controller
+
+% yabe_war.WEB-INF.application.precompiled.java.models.Comment : Model
+java,playmodel,none,model
+
+% yabe_war.WEB-INF.application.precompiled.java.models.Post : Model
+java,playmodel,none,model
+
+% yabe_war.WEB-INF.application.precompiled.java.models.Tag : Model
+java,playmodel,none,model
+
+% yabe_war.WEB-INF.application.precompiled.java.models.User : Model
+java,playmodel,none,model
+
+% yabe_war/WEB-INF/framework/templates/errors/404.xml : Controller
+xml,none,none,view
+
+% yabe_war/WEB-INF/framework/templates/errors/500.xml : Controller
+xml,none,none,view
+
+% yabe_war/WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+% zen_war.WEB-INF.application.precompiled.java.Bootstrap : Model
+java,playcontroller,none,model
+
+% zen_war.WEB-INF.application.precompiled.java.controllers.Application : Model
+java,playcontroller,application,controller
+
+% zen_war.WEB-INF.application.precompiled.java.controllers.PlayDocumentation : Model
+java,playcontroller,none,controller
+
+% zen_war.WEB-INF.application.precompiled.java.DocViewerPlugin : Model
+java,playcontroller,none,controller
+
+% zen_war.WEB-INF.application.precompiled.java.models.Contact : Model
+java,playmodel,none,model
+
+% zen_war/WEB-INF/framework/templates/errors/404.xml : Controller
+xml,none,none,view
+
+% zen_war/WEB-INF/framework/templates/errors/500.xml : Controller
+xml,none,none,view
+
+% zen_war/WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+
+% -------- end play -------- 
+
+% -------- begin grails -------- 
+
+% WEB-INF/applicationContext.xml : Controller
+xml,none,context,controller
+
+% Config$_run_closure1 : Model
+java,none,none,controller
+
+% Config$_run_closure1_closure3 : Model
+java,none,none,controller
+
+% Config$_run_closure1_closure4 : Model
+java,none,none,controller
+
+% Config$_run_closure1_closure5 : Model
+java,none,none,controller
+
+% Config$_run_closure2 : Model
+java,none,none,controller
+
+% Config : Model
+java,none,config,controller
+
+% DataSource$_run_closure1 : Model
+java,none,none,model
+
+% DataSource$_run_closure2 : Model
+java,none,none,model
+
+% DataSource$_run_closure2_closure3 : Model
+java,none,none,model
+
+% DataSource$_run_closure2_closure3_closure6 : Model
+java,none,none,model
+
+% DataSource$_run_closure2_closure4 : Model
+java,none,none,model
+
+% DataSource$_run_closure2_closure4_closure7 : Model
+java,none,none,model
+
+% DataSource$_run_closure2_closure5 : Model
+java,none,none,model
+
+% DataSource$_run_closure2_closure5_closure8 : Model
+java,none,none,model
+
+% DataSource : Model
+java,none,datasource,model
+
+% HibernateGrailsPlugin$_closure1 : Model
+java,none,none,model
+
+% HibernateGrailsPlugin$_closure2 : Model
+java,none,none,model
+
+% HibernateGrailsPlugin : Model
+java,none,none,model
+
+% IngredientController$_closure1 : Model
+java,none,none,model
+
+% IngredientController$_closure2 : Model
+java,none,none,model
+
+% IngredientController$_closure3 : Model
+java,none,none,model
+
+% IngredientController$_closure4 : Model
+java,none,none,model
+
+% IngredientController$_closure5 : Model
+java,none,none,model
+
+% IngredientController$_closure6 : Model
+java,none,none,model
+
+% IngredientController$_closure7 : Model
+java,none,none,model
+
+% IngredientController$_closure8 : Model
+java,none,none,model
+
+% IngredientController : Controller
+java,none,controller,controller
+
+% RecipeConstraints$_run_closure1 : Model
+java,none,none,model
+
+% RecipeConstraints : Model
+java,none,none,model
+
+% RecipeController : Controller
+java,none,controller,controller
+
+% TomcatGrailsPlugin : Model
+java,none,none,controller
+
+% UrlMappings$__clinit__closure1 : Model
+java,none,none,view
+
+% UrlMappings$__clinit__closure1_closure2 : Model
+java,none,none,view
+
+% UrlMappings$__clinit__closure1_closure2_closure3 : Model
+java,none,none,view
+
+% UrlMappings : Model
+java,none,none,view
+
+% WEB-INF/classes/application.properties : View
+properties,none,application,controller
+
+% com.recipes.Ingredient : Model
+java,persistence,none,model
+
+% com.recipes.Recipe : Model
+java,persistence,none,model
+
+% WEB-INF/classes/gsp/views.properties : View
+properties,none,none,view
+
+% gsp_recipes_ingredientcreate_gsp$_run_closure1 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientcreate_gsp$_run_closure2 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientcreate_gsp$_run_closure2_closure3 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientcreate_gsp$_run_closure2_closure4 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientcreate_gsp : Model
+java,none,none,model
+
+% gsp_recipes_ingredientedit_gsp$_run_closure1 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientedit_gsp$_run_closure2 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientedit_gsp$_run_closure2_closure3 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientedit_gsp$_run_closure2_closure4 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientedit_gsp : Model
+java,none,none,model
+
+% gsp_recipes_ingredientlist_gsp$_run_closure1 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientlist_gsp$_run_closure2 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientlist_gsp$_run_closure2_closure3 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientlist_gsp : Model
+java,none,none,model
+
+% gsp_recipes_ingredientshow_gsp$_run_closure1 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientshow_gsp$_run_closure2 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientshow_gsp$_run_closure2_closure3 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientshow_gsp$_run_closure2_closure4 : Model
+java,none,none,model
+
+% gsp_recipes_ingredientshow_gsp : Model
+java,none,none,model
+
+% gsp_recipes_layoutsmain_gsp$_run_closure1 : Model
+java,none,none,model
+
+% gsp_recipes_layoutsmain_gsp$_run_closure1_closure3 : Model
+java,none,none,model
+
+% gsp_recipes_layoutsmain_gsp$_run_closure2 : Model
+java,none,none,model
+
+% gsp_recipes_layoutsmain_gsp : Model
+java,none,none,model
+
+% gsp_recipeserror_gsp$_run_closure1 : Model
+java,none,none,model
+
+% gsp_recipeserror_gsp$_run_closure2 : Model
+java,none,none,model
+
+% gsp_recipeserror_gsp$_run_closure2_closure3 : Model
+java,none,none,model
+
+% gsp_recipeserror_gsp : Model
+java,none,none,model
+
+% WEB-INF/classes/hibernate.cfg.xml : Controller
+xml,none,cfg,controller
+
+% org.grails.tomcat.ParentDelegatingClassLoader : Model
+java,none,none,controller
+
+% org.grails.tomcat.SearchFirstURLClassLoader : Model
+java,none,none,controller
+
+% org.grails.tomcat.TomcatLoader : Model
+java,none,none,controller
+
+% org.grails.tomcat.TomcatServer$_preStart_closure4 : Model
+java,none,none,controller
+
+% org.grails.tomcat.TomcatServer$_preStart_closure4_closure7 : Model
+java,none,none,controller
+
+% org.grails.tomcat.TomcatServer$_start_closure1 : Model
+java,none,none,controller
+
+% org.grails.tomcat.TomcatServer$_start_closure2 : Model
+java,none,none,controller
+
+% org.grails.tomcat.TomcatServer$_start_closure2_closure5 : Model
+java,none,none,controller
+
+% org.grails.tomcat.TomcatServer$_start_closure2_closure5_closure6 : Model
+java,none,none,controller
+
+% org.grails.tomcat.TomcatServer$_start_closure3 : Model
+java,none,none,controller
+
+% org.grails.tomcat.TomcatServer : Model
+java,grailscontroller,none,controller
+
+% org.grails.tomcat.TomcatServerFactory : Model
+java,grailscontroller,none,controller
+
+% WEB-INF/grails-app/i18n/messages.properties : View
+properties,none,none,view
+
+% WEB-INF/grails.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/plugins/hibernate-1.3.7/plugin.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/sitemesh.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+% -------- end grails --------
+
+% -------- begin struts -------- 
+
+% interactive/jsp_4.jsp : View
+jsp,none,none,view
+
+% interactive/ognl_0.jsp : View
+jsp,none,none,view
+
+% interactive/ognl_1.jsp : View
+jsp,none,none,view
+
+% interactive/ognl_2.jsp : View
+jsp,none,none,view
+
+% interactive/ognl_3.jsp : View
+jsp,none,none,view
+
+% interactive/ognl_4.jsp : View
+jsp,none,none,view
+
+% interactive/ognl_5.jsp : View
+jsp,none,none,view
+
+% interactive/ognl_6.jsp : View
+jsp,none,none,view
+
+% interactive/ognl_7.jsp : View
+jsp,none,none,view
+
+% interactive/ognl_8.jsp : View
+jsp,none,none,view
+
+% jsf/employee/edit.jsp : View
+jsp,none,none,view
+
+% jsf/employee/list.jsp : View
+jsp,none,none,view
+
+% jsf/index.jsp : View
+jsp,none,none,view
+
+% modelDriven/modelDriven.jsp : View
+jsp,none,none,view
+
+% modelDriven/modelDrivenResult.jsp : View
+jsp,none,none,view
+
+% person/editPerson.jsp : View
+jsp,none,none,view
+
+% person/index.jsp : View
+jsp,none,none,view
+
+% /showcase.jsp : View
+jsp,none,none,view
+
+% tags/index.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/actionPrefix/index.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/actionTag/includedPage.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/actionTag/includedPage2.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/actionTag/includedPage3.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/actionTag/showActionTagDemo.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/date.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/debug.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/ifTag/testIf.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/index.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/iteratorTag/appendIteratorTagDemoResult.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/iteratorTag/iteratorGeneratorTagDemoResult.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/iteratorTag/mergeIteratorTagDemoResult.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/iteratorTag/showAppendIteratorTagDemo.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/iteratorTag/showIteratorGeneratorTagDemo.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/iteratorTag/showMergeIteratorTagDemo.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/iteratorTag/subsetIteratorTagDemo.jsp : View
+jsp,none,none,view
+
+% tags/non-ui/iteratorTag/subsetIteratorTagDemoResult.jsp : View
+jsp,none,none,view
+
+% tags/ui/actionTagExampleCalled.jsp : View
+jsp,none,none,view
+
+% tags/ui/actionTagExampleCalling.jsp : View
+jsp,none,none,view
+
+% tags/ui/componentTagExample.jsp : View
+jsp,none,none,view
+
+% tags/ui/datepicker/index.jsp : View
+jsp,none,none,view
+
+% tags/ui/dynamicTreeSelect.jsp : View
+jsp,none,none,view
+
+% tags/ui/example.jsp : View
+jsp,none,none,view
+
+% tags/ui/exampleSubmited.jsp : View
+jsp,none,none,view
+
+% tags/ui/index.jsp : View
+jsp,none,none,view
+
+% tags/ui/lotsOfOptiontransferselect.jsp : View
+jsp,none,none,view
+
+% tags/ui/lotsOfOptiontransferselectSubmit.jsp : View
+jsp,none,none,view
+
+% tags/ui/moreSelects.jsp : View
+jsp,none,none,view
+
+% tags/ui/moreSelectsSubmit.jsp : View
+jsp,none,none,view
+
+% tags/ui/staticTreeSelect.jsp : View
+jsp,none,none,view
+
+% tags/ui/timepicker/index.jsp : View
+jsp,none,none,view
+
+% tags/ui/treeExampleAjaxDynamic.jsp : View
+jsp,none,none,view
+
+% tags/ui/treeExampleDynamic.jsp : View
+jsp,none,none,view
+
+% tags/ui/treeExampleStatic.jsp : View
+jsp,none,none,view
+
+% template/xhtml/mytemplate.jsp : View
+jsp,none,none,view
+
+% tiles/body.jsp : View
+jsp,none,none,view
+
+% tiles/header.jsp : View
+jsp,none,none,view
+
+% tiles/layout.jsp : View
+jsp,none,none,view
+
+% token/doublePost.jsp : View
+jsp,none,none,view
+
+% token/example1.jsp : View
+jsp,none,none,view
+
+% token/example2.jsp : View
+jsp,none,none,view
+
+% token/example3.jsp : View
+jsp,none,none,view
+
+% token/index.jsp : View
+jsp,none,none,view
+
+% token/transferDone.jsp : View
+jsp,none,none,view
+
+% validation/clientSideValidationExample.jsp : View
+jsp,none,none,view
+
+% validation/fieldValidatorsExample.jsp : View
+jsp,none,none,view
+
+% validation/footer.jsp : View
+jsp,none,none,view
+
+% validation/index.jsp : View
+jsp,none,none,view
+
+% validation/nonFieldValidatorsExample.jsp : View
+jsp,none,none,view
+
+% validation/quiz-ajax.jsp : View
+jsp,none,none,view
+
+% validation/quiz-basic.jsp : View
+jsp,none,none,view
+
+% validation/quiz-client-css.jsp : View
+jsp,none,none,view
+
+% validation/quiz-client.jsp : View
+jsp,none,none,view
+
+% validation/quiz-success.jsp : View
+jsp,none,none,view
+
+% validation/storeErrorsAcrossRequestCancel.jsp : View
+jsp,none,none,view
+
+% validation/storeErrorsAcrossRequestExample.jsp : View
+jsp,none,none,view
+
+% validation/storeErrorsAcrossRequestOk.jsp : View
+jsp,none,none,view
+
+% validation/successClientSideValidationExample.jsp : View
+jsp,none,none,view
+
+% validation/successFieldValidatorsExample.jsp : View
+jsp,none,none,view
+
+% validation/successNonFieldValidatorsExample.jsp : View
+jsp,none,none,view
+
+% validation/successVisitorValidatorsExample.jsp : View
+jsp,none,none,view
+
+% validation/visitorValidatorsExample.jsp : View
+jsp,none,none,view
+
+% /viewSource.jsp : View
+jsp,none,none,view
+
+% wait/complete.jsp : View
+jsp,none,none,view
+
+% wait/example1.jsp : View
+jsp,none,none,view
+
+% wait/example2.jsp : View
+jsp,none,none,view
+
+% wait/example3.jsp : View
+jsp,none,none,view
+
+% wait/index.jsp : View
+jsp,none,none,view
+
+% wait/wait.jsp : View
+jsp,none,none,view
+
+% WEB-INF/applicationContext.xml : Controller
+xml,none,context,controller
+
+% WEB-INF/classes/globalMessages.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/globalMessages_de.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/globalMessages_en.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/log4j.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.action.AbstractCRUDAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.action.Book : Model
+java,strutscontroller,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/action/EmployeeAction-conversion.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/org/apache/struts2/showcase/action/EmployeeAction-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.action.EmployeeAction : Model
+java,strutscontroller,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/action/EmployeeAction.properties : View
+properties,none,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/action/EmployeeAction_de.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/org/apache/struts2/showcase/action/EmployeeAction_en.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.action.ExampleAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.action.JSPEvalAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/action/SkillAction-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.action.SkillAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/action/SkillAction.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/org/apache/struts2/showcase/action/SkillAction_de.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.actionchaining.ActionChain1 : Model
+java,strutscontroller,none,controller
+
+% org.apache.struts2.showcase.actionchaining.ActionChain2 : Model
+java,strutscontroller,none,controller
+
+% org.apache.struts2.showcase.actionchaining.ActionChain3 : Model
+java,strutscontroller,none,controller
+
+% org.apache.struts2.showcase.ajax.AjaxTestAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.ajax.AutocompleterExampleAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.ajax.Example4ShowPanelAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/ajax/Example5Action-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.ajax.Example5Action : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.ajax.tree.Category : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.ajax.tree.GetCategory : Model
+java,strutscontroller,none,controller
+
+% org.apache.struts2.showcase.ajax.tree.Toggle : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.application.MemoryStorage : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.application.Storage : Model
+java,serialization,none,model
+
+% org.apache.struts2.showcase.application.TestDataProvider : Model
+java,serialization,none,model
+
+% org.apache.struts2.showcase.chat.ChatAuthenticationInterceptor : Model
+java,strutscontroller,none,controller
+
+% org.apache.struts2.showcase.chat.ChatException$ErrorType : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.chat.ChatException : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.chat.ChatInterceptor : Model
+java,strutscontroller,none,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/chat/ChatLoginAction-chatLogin-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.chat.ChatLoginAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.chat.ChatLogoutAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/chat/ChatMessage-conversion.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.chat.ChatMessage : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.chat.ChatService : Controller
+java,none,service,controller
+
+% org.apache.struts2.showcase.chat.ChatServiceImpl : Model
+java,none,none,controller
+
+% org.apache.struts2.showcase.chat.ChatSessionListener : View
+java,servlet,listener,view
+
+% org.apache.struts2.showcase.chat.Constants : Model
+java,none,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/chat/CrudRoomAction-createRoom-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.chat.CrudRoomAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.chat.DateConverter : Model
+java,strutscontroller,none,controller
+
+% org.apache.struts2.showcase.chat.EnterRoomAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.chat.ExitRoomAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.chat.MessagesAvailableInRoomAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/chat/Room-conversion.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.chat.Room : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.chat.RoomsAvailableAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/chat/SendMessageToRoomAction-sendMessageToRoom-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.chat.SendMessageToRoomAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.chat.User : Model
+java,serialization,none,model
+
+% org.apache.struts2.showcase.chat.UsersAvailableAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.chat.UsersAvailableInRoomAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.conversion.Address : Model
+java,none,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/conversion/AddressAction-conversion.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.conversion.AddressAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.conversion.EnumTypeConverter : Model
+java,none,none,controller
+
+% org.apache.struts2.showcase.conversion.OperationsEnum : Model
+java,none,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/conversion/OperationsEnumAction-conversion.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.conversion.OperationsEnumAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.conversion.Person : Model
+java,serialization,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/conversion/PersonAction-conversion.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.conversion.PersonAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.dao.AbstractDao : Model
+java,serialization,dao,model
+
+% org.apache.struts2.showcase.dao.Dao : Model
+java,serialization,dao,model
+
+% org.apache.struts2.showcase.dao.EmployeeDao : Model
+java,serialization,dao,model
+
+% org.apache.struts2.showcase.dao.SkillDao : Model
+java,serialization,dao,model
+
+% org.apache.struts2.showcase.DateAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/DateAction.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.DynamicTreeSelectAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.exception.CreateException : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.exception.DeleteException : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.exception.DuplicateKeyException : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.exception.StorageException : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.exception.UpdateException : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.filedownload.FileDownloadAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/fileupload/FileUploadAction-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.fileupload.FileUploadAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.fileupload.MultipleFileUploadUsingArrayAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/fileupload/MultipleFileUploadUsingListAction-conversion.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.fileupload.MultipleFileUploadUsingListAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.freemarker.CustomFreemarkerManager : Controller
+java,strutscontroller,manager,controller
+
+% org.apache.struts2.showcase.freemarker.CustomFreemarkerManagerUtil : Model
+java,none,none,controller
+
+% org.apache.struts2.showcase.freemarker.StandardTagsAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.hangman.GetUpdatedHangmanAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.hangman.GuessCharacterAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.hangman.Hangman : Model
+java,serialization,none,model
+
+% org.apache.struts2.showcase.hangman.HangmanConstants : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.hangman.HangmanException$Type : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.hangman.HangmanException : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.hangman.HangmanService : Controller
+java,none,service,controller
+
+% org.apache.struts2.showcase.hangman.PropertiesVocabSource : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.hangman.StartHangmanAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.hangman.Vocab : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.hangman.VocabSource : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.integration.EditGangsterAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.integration.GangsterForm : View
+java,strutscontroller,form,model
+
+% org.apache.struts2.showcase.integration.SaveGangsterAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.jsf.JsfEmployeeAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.LotsOfOptiontransferselectAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/LotsOfRichtexteditorAction-lotsOfRichtexteditorSubmit-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.LotsOfRichtexteditorAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.model.Employee : Model
+java,serialization,none,model
+
+% org.apache.struts2.showcase.model.IdEntity : Model
+java,serialization,entity,model
+
+% org.apache.struts2.showcase.model.Skill : Model
+java,serialization,none,model
+
+% org.apache.struts2.showcase.modelDriven.Gangster : Model
+java,serialization,none,model
+
+% org.apache.struts2.showcase.modelDriven.ModelDrivenAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.MoreSelectsAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/person/EditPersonAction-conversion.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.person.EditPersonAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.person.ListPeopleAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/person/NewPersonAction-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.person.NewPersonAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/person/Person-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.person.Person : Model
+java,serialization,none,model
+
+% org.apache.struts2.showcase.person.PersonManager : Controller
+java,strutscontroller,manager,controller
+
+% org.apache.struts2.showcase.ShowAjaxDynamicTreeAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.ShowDynamicTreeAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.source.ViewSourceAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.tag.nonui.actionPrefix.SubmitAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.tag.nonui.actiontag.ActionTagDemo : Model
+java,strutscontroller,none,model
+
+% org.apache.struts2.showcase.tag.nonui.iteratortag.AppendIteratorTagDemo : Model
+java,strutscontroller,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/tag/nonui/iteratortag/IteratorGeneratorTagDemo-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.tag.nonui.iteratortag.IteratorGeneratorTagDemo : Model
+java,strutscontroller,none,model
+
+% org.apache.struts2.showcase.tag.nonui.iteratortag.MergeIteratorTagDemo : Model
+java,strutscontroller,none,model
+
+% org.apache.struts2.showcase.tag.nonui.iteratortag.SubsetIteratorTagDemo : Model
+java,strutscontroller,none,model
+
+% org.apache.struts2.showcase.token.TokenAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.UITagExample$Language : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.UITagExample$VehicalSpecific : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.UITagExample$VehicalType : Model
+java,none,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/UITagExample-conversion.properties : View
+properties,none,none,view
+
+% org.apache.struts2.showcase.UITagExample : Model
+java,strutscontroller,none,model
+
+% org.apache.struts2.showcase.validation.AbstractValidationActionSupport : Model
+java,strutscontroller,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/validation/FieldValidatorsExampleAction-conversion.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/org/apache/struts2/showcase/validation/FieldValidatorsExampleAction-submitClientSideValidationExample-validation.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/validation/FieldValidatorsExampleAction-submitFieldValidatorsExamples-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.validation.FieldValidatorsExampleAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/validation/FieldValidatorsExampleAction.properties : View
+properties,none,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/validation/NonFieldValidatorsExampleAction-submitNonFieldValidatorsExamples-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.validation.NonFieldValidatorsExampleAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/validation/QuizAction-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.validation.QuizAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/validation/SubmitApplication-submitApplication-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.validation.SubmitApplication : Model
+java,strutscontroller,application,controller
+
+% WEB-INF/classes/org/apache/struts2/showcase/validation/User-userContext-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.validation.User : Model
+java,serialization,none,model
+
+% WEB-INF/classes/org/apache/struts2/showcase/validation/VisitorValidatorsExampleAction-submitVisitorValidatorsExamples-validation.xml : Controller
+xml,none,none,controller
+
+% org.apache.struts2.showcase.validation.VisitorValidatorsExampleAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.wait.LongProcessAction : Model
+java,strutscontroller,action,controller
+
+% org.apache.struts2.showcase.xslt.JVMAction$ImportantInfo : Model
+java,none,none,model
+
+% org.apache.struts2.showcase.xslt.JVMAction : Model
+java,strutscontroller,action,controller
+
+% WEB-INF/classes/struts-actionchaining.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-ajax.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-chat.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-conversion.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-filedownload.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-fileupload.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-freemarker.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-hangman.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-integration.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-interactive.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-jsf.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-model-driven.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-person.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-tags-non-ui.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-tags-ui.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-tags.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-tiles.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-token.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-validation.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-wait.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts-xslt.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/struts.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/decorators/main.jsp : View
+jsp,none,none,view
+
+% WEB-INF/decorators.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/dwr.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/sitemesh.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/tiles.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/validation.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/web.xml : Controller
+xml,none,none,controller
+
+% xslt/index.jsp : View
+jsp,none,none,view
+
+% META-INF/maven/org.apache.struts/struts2-showcase/pom.xml : Controller
+xml,none,none,controller
+
+% META-INF/maven/org.apache.struts/struts2-showcase/pom.properties : View
+properties,none,none,view
+
+% -------- end struts --------
+
+% -------- begin roo -------- 
+
+% WEB-INF/classes/alt.properties : View
+properties,none,none,view
+
+% com.springsource.petclinic.domain.AbstractPerson$1 : Model
+java,roomodel,none,model
+
+% com.springsource.petclinic.domain.AbstractPerson : Model
+java,persistence,none,model
+
+% com.springsource.petclinic.domain.AbstractPerson_Roo_Configurable : Model
+java,roomodel,none,model
+
+% com.springsource.petclinic.domain.AbstractPerson_Roo_Entity : Model
+java,persistence,entity,model
+
+% com.springsource.petclinic.domain.AbstractPerson_Roo_JavaBean : Model
+java,none,bean,model
+
+% com.springsource.petclinic.domain.AbstractPerson_Roo_ToString : Model
+java,none,none,model
+
+% com.springsource.petclinic.domain.Owner : Model
+java,persistence,none,model
+
+% com.springsource.petclinic.domain.Owner_Roo_Configurable : Model
+java,roomodel,none,model
+
+% com.springsource.petclinic.domain.Owner_Roo_Entity : Model
+java,persistence,entity,model
+
+% com.springsource.petclinic.domain.Owner_Roo_JavaBean : Model
+java,none,bean,model
+
+% com.springsource.petclinic.domain.Owner_Roo_ToString : Model
+java,none,none,model
+
+% com.springsource.petclinic.domain.Pet : Model
+java,persistence,none,model
+
+% com.springsource.petclinic.domain.Pet_Roo_Configurable : Model
+java,roomodel,none,model
+
+% com.springsource.petclinic.domain.Pet_Roo_Entity : Model
+java,persistence,entity,model
+
+% com.springsource.petclinic.domain.Pet_Roo_Finder : Model
+java,persistence,finder,controller
+
+% com.springsource.petclinic.domain.Pet_Roo_JavaBean : Model
+java,none,bean,controller
+
+% com.springsource.petclinic.domain.Pet_Roo_ToString : Model
+java,none,none,model
+
+% com.springsource.petclinic.domain.Vet : Model
+java,persistence,none,model
+
+% com.springsource.petclinic.domain.Vet_Roo_Configurable : Model
+java,roomodel,none,model
+
+% com.springsource.petclinic.domain.Vet_Roo_Entity : Model
+java,persistence,entity,model
+
+% com.springsource.petclinic.domain.Vet_Roo_JavaBean : Model
+java,none,bean,model
+
+% com.springsource.petclinic.domain.Vet_Roo_ToString : Model
+java,none,none,model
+
+% com.springsource.petclinic.domain.Visit : Model
+java,persistence,none,model
+
+% com.springsource.petclinic.domain.Visit_Roo_Configurable : Model
+java,roomodel,none,controller
+
+% com.springsource.petclinic.domain.Visit_Roo_Entity : Model
+java,persistence,entity,model
+
+% com.springsource.petclinic.domain.Visit_Roo_Finder : Model
+java,persistence,finder,controller
+
+% com.springsource.petclinic.domain.Visit_Roo_JavaBean : Model
+java,none,bean,model
+
+% com.springsource.petclinic.domain.Visit_Roo_ToString : Model
+java,none,none,model
+
+% com.springsource.petclinic.reference.PetType : Model
+java,none,none,model
+
+% com.springsource.petclinic.reference.Specialty : Model
+java,none,none,model
+
+% com.springsource.petclinic.web.ApplicationConversionServiceFactoryBean$1 : Model
+java,none,none,controller
+
+% com.springsource.petclinic.web.ApplicationConversionServiceFactoryBean$2 : Model
+java,none,none,controller
+
+% com.springsource.petclinic.web.ApplicationConversionServiceFactoryBean$3 : Model
+java,none,none,controller
+
+% com.springsource.petclinic.web.ApplicationConversionServiceFactoryBean$4 : Model
+java,none,none,controller
+
+% com.springsource.petclinic.web.ApplicationConversionServiceFactoryBean : Model
+java,none,none,controller
+
+% com.springsource.petclinic.web.ApplicationConversionServiceFactoryBean_Roo_ConversionService : Controller
+java,roocontroller,none,controller
+
+% com.springsource.petclinic.web.OwnerController : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.petclinic.web.OwnerController_Roo_Controller : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.petclinic.web.PetController : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.petclinic.web.PetController_Roo_Controller : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.petclinic.web.VetController : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.petclinic.web.VetController_Roo_Controller : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.petclinic.web.VisitController : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.petclinic.web.VisitController_Roo_Controller : Controller
+java,roocontroller,controller,controller
+
+% WEB-INF/classes/log4j.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/META-INF/aop-ajc.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/persistence.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/spring/applicationContext.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/spring/database.properties : View
+properties,none,none,model
+
+% WEB-INF/classes/standard.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/application.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/messages.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/messages_de.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/messages_es.properties : View
+properties,none,none,view
+
+% WEB-INF/layouts/layouts.xml : Controller
+xml,none,none,view
+
+% WEB-INF/spring/webmvc-config.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/views/owners/views.xml : Controller
+xml,none,none,view
+
+% WEB-INF/views/pets/views.xml : Controller
+xml,none,none,view
+
+% WEB-INF/views/vets/views.xml : Controller
+xml,none,none,view
+
+% WEB-INF/views/views.xml : Controller
+xml,none,none,view
+
+% WEB-INF/views/visits/views.xml : Controller
+xml,none,none,view
+
+% WEB-INF/web.xml : Controller
+xml,none,web,controller
+
+% META-INF/maven/com.springsource.petclinic/petclinic/pom.xml : Controller
+xml,none,none,controller
+
+% META-INF/maven/com.springsource.petclinic/petclinic/pom.properties : View
+properties,none,none,controller
+
+% WEB-INF/classes/alt.properties : View
+properties,none,none,controller
+
+% com.springsource.vote.domain.Choice : Model
+java,persistence,none,model
+
+% com.springsource.vote.domain.Choice_Roo_Configurable : Model
+java,roomodel,none,model
+
+% com.springsource.vote.domain.Choice_Roo_Entity : Model
+java,persistence,entity,model
+
+% com.springsource.vote.domain.Choice_Roo_JavaBean : Model
+java,none,bean,model
+
+% com.springsource.vote.domain.Choice_Roo_ToString : Model
+java,none,none,model
+
+% com.springsource.vote.domain.Vote : Model
+java,persistence,none,model
+
+% com.springsource.vote.domain.Vote_Roo_Configurable : Model
+java,roomodel,none,model
+
+% com.springsource.vote.domain.Vote_Roo_Entity : Model
+java,persistence,entity,model
+
+% com.springsource.vote.domain.Vote_Roo_JavaBean : Model
+java,none,bean,model
+
+% com.springsource.vote.domain.Vote_Roo_ToString : Model
+java,none,none,model
+
+% com.springsource.vote.web.ApplicationConversionServiceFactoryBean$1 : Model
+java,none,none,model
+
+% com.springsource.vote.web.ApplicationConversionServiceFactoryBean$2 : Model
+java,none,none,model
+
+% com.springsource.vote.web.ApplicationConversionServiceFactoryBean : Model
+java,none,bean,model
+
+% com.springsource.vote.web.ApplicationConversionServiceFactoryBean_Roo_ConversionService : Controller
+java,roocontroller,service,controller
+
+% com.springsource.vote.web.ChoiceController : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.vote.web.ChoiceController_Roo_Controller : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.vote.web.PublicVoteController : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.vote.web.VoteController : Controller
+java,roocontroller,controller,controller
+
+% com.springsource.vote.web.VoteController_Roo_Controller : Controller
+java,roocontroller,controller,controller
+
+% WEB-INF/classes/log4j.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/META-INF/aop-ajc.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/persistence.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/spring/applicationContext-security.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/spring/applicationContext.xml : Controller
+xml,none,context,controller
+
+% WEB-INF/classes/META-INF/spring/database.properties : View
+properties,none,none,controller
+
+% WEB-INF/classes/standard.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/application.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/messages.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/messages_de.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/messages_es.properties : View
+properties,none,none,view
+
+% WEB-INF/layouts/layouts.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/spring/webmvc-config.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/views/choices/views.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/views/public/views.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/views/views.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/views/votes/views.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/web.xml : Controller
+xml,none,none,controller
+
+% META-INF/maven/com.springsource.vote/vote/pom.xml : Controller
+xml,none,none,controller
+
+% META-INF/maven/com.springsource.vote/vote/pom.properties : View
+properties,none,none,controller
+
+% WEB-INF/classes/alt.properties : View
+properties,none,none,controller
+
+% com.wedding.domain.Rsvp : Model
+java,persistence,none,model
+
+% com.wedding.domain.Rsvp_Roo_Configurable : Model
+java,roomodel,none,model
+
+% com.wedding.domain.Rsvp_Roo_Entity : Model
+java,persistence,entity,model
+
+% com.wedding.domain.Rsvp_Roo_Finder : Model
+java,persistence,finder,controller
+
+% com.wedding.domain.Rsvp_Roo_JavaBean : Model
+java,none,bean,model
+
+% com.wedding.domain.Rsvp_Roo_ToString : Model
+java,none,none,model
+
+% com.wedding.web.ApplicationConversionServiceFactoryBean$1 : Model
+java,none,none,model
+
+% com.wedding.web.ApplicationConversionServiceFactoryBean : Model
+java,none,none,model
+
+% com.wedding.web.ApplicationConversionServiceFactoryBean_Roo_ConversionService : Controller
+java,roocontroller,service,controller
+
+% com.wedding.web.PublicRsvpController : Controller
+java,roocontroller,controller,controller
+
+% com.wedding.web.RsvpController : Controller
+java,roocontroller,controller,controller
+
+% com.wedding.web.RsvpController_Roo_Controller : Controller
+java,roocontroller,controller,controller
+
+% WEB-INF/classes/log4j.properties : View
+properties,none,none,view
+
+% WEB-INF/classes/META-INF/aop-ajc.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/persistence.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/spring/applicationContext-security.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/spring/applicationContext.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/classes/META-INF/spring/database.properties : View
+properties,none,none,controller
+
+% WEB-INF/classes/META-INF/spring/email.properties : View
+properties,none,none,controller
+
+% WEB-INF/classes/standard.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/application.properties : View
+properties,none,none,view
+
+% WEB-INF/i18n/messages.properties : View
+properties,none,none,view
+
+% WEB-INF/layouts/layouts.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/spring/webmvc-config.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/views/publicrsvp/views.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/views/rsvps/views.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/views/views.xml : Controller
+xml,none,none,controller
+
+% WEB-INF/web.xml : Controller
+xml,none,none,controller
+
+% META-INF/maven/com.wedding/wedding/pom.xml : Controller
+xml,none,none,controller
+
+% META-INF/maven/com.wedding/wedding/pom.properties : View
+properties,none,none,controller
+
+% -------- end roo --------

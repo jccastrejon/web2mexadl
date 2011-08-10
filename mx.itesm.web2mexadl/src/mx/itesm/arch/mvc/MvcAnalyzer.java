@@ -1,6 +1,7 @@
 package mx.itesm.arch.mvc;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,10 @@ import java.util.logging.Logger;
 import mx.itesm.arch.dependencies.ClassDependencies;
 import mx.itesm.arch.dependencies.DependenciesUtil;
 import mx.itesm.arch.dependencies.DependencyAnalyzer;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import weka.classifiers.Classifier;
 import weka.core.Attribute;
 import weka.core.FastVector;
@@ -26,6 +31,20 @@ import weka.core.SerializationHelper;
  * 
  */
 public class MvcAnalyzer {
+
+    /**
+     * Template for main implementation packages.
+     */
+    private static final String MAIN_IMPLEMENTATION = "<javaimplementation:mainClass xsi:type='javaimplementation:JavaClassFile'>"
+            + "<javaimplementation:javaClassName xsi:type='javaimplementation:JavaClassName'>PACKAGE..**</javaimplementation:javaClassName>"
+            + "</javaimplementation:mainClass>";
+
+    /**
+     * Template for auxiliary implementation packages.
+     */
+    private static final String AUX_IMPLEMENTATION = "<javaimplementation:auxClass xsi:type='javaimplementation:JavaClassFile'>"
+            + "<javaimplementation:javaClassName xsi:type='javaimplementation:JavaClassName'>PACKAGE..**</javaimplementation:javaClassName>"
+            + "</javaimplementation:auxClass>";
 
     /**
      * Random Variables used in the Uncertainty model.
@@ -154,7 +173,7 @@ public class MvcAnalyzer {
         dependencies = DependencyAnalyzer.getDirectoryDependencies(path.getAbsolutePath(), new MvcDependencyCommand());
         internalPackages = DependenciesUtil.getInternalPackages(dependencies,
                 MvcAnalyzer.getPropertyValues(MvcAnalyzer.Variable.Type.getVariableName()));
-        returnValue = MvcAnalyzer.classifyClasses(dependencies, internalPackages);
+        returnValue = MvcAnalyzer.generateArchitecture(dependencies, internalPackages, outputFile.getParentFile());
 
         if (outputFile != null) {
             DependenciesUtil.exportDependenciesToSVG(dependencies, includeExternal, outputFile, internalPackages,
@@ -195,7 +214,7 @@ public class MvcAnalyzer {
 
         internalPackages = DependenciesUtil.getInternalPackages(dependencies,
                 MvcAnalyzer.getPropertyValues(MvcAnalyzer.Variable.Type.getVariableName()));
-        returnValue = MvcAnalyzer.classifyClasses(dependencies, internalPackages);
+        returnValue = MvcAnalyzer.generateArchitecture(dependencies, internalPackages, outputFile.getParentFile());
 
         if (outputFile != null) {
             DependenciesUtil.exportDependenciesToSVG(dependencies, includeExternal, outputFile, internalPackages,
@@ -217,8 +236,8 @@ public class MvcAnalyzer {
      * @throws Exception
      *             If an Exception occurs during classification.
      */
-    private static Map<String, Layer> classifyClasses(final List<ClassDependencies> dependencies,
-            final Map<String, Set<String>> internalPackages) throws Exception {
+    private static Map<String, Layer> generateArchitecture(final List<ClassDependencies> dependencies,
+            final Map<String, Set<String>> internalPackages, final File outputDir) throws Exception {
         int viewCount;
         int modelCount;
         int instanceLayer;
@@ -237,6 +256,9 @@ public class MvcAnalyzer {
         Set<String> currentPackageContent;
         Map<String, Layer> packagesClassification;
         Map<String, String[]> externalApiPackages;
+        StringBuilder modelPackages;
+        StringBuilder viewPackages;
+        StringBuilder controllerPackages;
 
         // Model variables
         attributes = new FastVector();
@@ -328,7 +350,7 @@ public class MvcAnalyzer {
             instance.setMissing(Layer.attribute);
             instances.add(instance);
             instance.setDataset(instances);
-            
+
             try {
                 instanceLayer = (int) MvcAnalyzer.classifier.classifyInstance(instance);
             } catch (Exception e) {
@@ -336,12 +358,15 @@ public class MvcAnalyzer {
                 instanceLayer = 0;
                 logger.severe("Unable to classify: " + instance);
             }
-            
+
             returnValue.put(classDependencies.getClassName(), Layer.values()[instanceLayer]);
             logger.info(classDependencies.getClassName() + " : " + returnValue.get(classDependencies.getClassName()));
         }
 
         // Check for any invalid relation
+        viewPackages = new StringBuilder();
+        modelPackages = new StringBuilder();
+        controllerPackages = new StringBuilder();
         packagesClassification = new HashMap<String, Layer>(internalPackages.size());
         for (String currentPackage : internalPackages.keySet()) {
             modelCount = viewCount = controllerCount = 0;
@@ -360,10 +385,13 @@ public class MvcAnalyzer {
 
             if ((modelCount > viewCount) && (modelCount > controllerCount)) {
                 packagesClassification.put(currentPackage, Layer.Model);
+                MvcAnalyzer.addImplementationPackage(modelPackages, currentPackage);
             } else if ((viewCount > modelCount) && (viewCount > controllerCount)) {
                 packagesClassification.put(currentPackage, Layer.View);
+                MvcAnalyzer.addImplementationPackage(viewPackages, currentPackage);
             } else if ((controllerCount > viewCount) && (controllerCount > modelCount)) {
                 packagesClassification.put(currentPackage, Layer.Controller);
+                MvcAnalyzer.addImplementationPackage(controllerPackages, currentPackage);
             } else {
                 packagesClassification.put(currentPackage, null);
             }
@@ -396,7 +424,54 @@ public class MvcAnalyzer {
             }
         }
 
+        // Export MexADL architecture
+        MvcAnalyzer.exportToMexADL(outputDir, modelPackages.toString(), controllerPackages.toString(),
+                viewPackages.toString());
+
         return returnValue;
+    }
+
+    /**
+     * 
+     * @param currentPackages
+     * @param currentPackage
+     */
+    public static void addImplementationPackage(final StringBuilder currentPackages, final String currentPackage) {
+        if (currentPackage.indexOf('.') > 0) {
+            if (currentPackages.length() == 0) {
+                currentPackages.append(MvcAnalyzer.MAIN_IMPLEMENTATION.replace("PACKAGE", currentPackage)).append("\n");
+            } else {
+                currentPackages.append(MvcAnalyzer.AUX_IMPLEMENTATION.replace("PACKAGE", currentPackage)).append("\n");
+            }
+        }
+    }
+
+    /**
+     * 
+     * @param modelPackages
+     * @param controllerPackages
+     * @param viewPackages
+     * @throws IOException
+     */
+    public static void exportToMexADL(final File outputDir, final String modelPackages,
+            final String controllerPackages, final String viewPackages) throws IOException {
+        File outputFile;
+        String outputContents;
+
+        // Initial template
+        outputFile = new File(outputDir, "architecture.xml");
+        FileUtils.deleteQuietly(outputFile);
+        FileUtils.copyInputStreamToFile(
+                MvcAnalyzer.class.getResourceAsStream("/mx/itesm/arch/templates/ArchitectureTemplate.xml"), outputFile);
+
+        // Update template with implementation packages
+        outputContents = FileUtils.readFileToString(outputFile, "UTF-8");
+        outputContents = StringUtils.replace(outputContents, "<!-- Model implementation -->", modelPackages);
+        outputContents = StringUtils.replace(outputContents, "<!-- View implementation -->", viewPackages);
+        outputContents = StringUtils.replace(outputContents, "<!-- Controller implementation -->", controllerPackages);
+
+        // Final architecture
+        FileUtils.write(outputFile, outputContents);
     }
 
     /**
