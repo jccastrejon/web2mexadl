@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+      		objectClass="org.eclipse.core.resources.IProject"
+            id="mx.itesm.web2mexadl.plugin.contribution0">
+         <menu
+               label="Web2MexADL"
+               path="additions"
+               id="mx.itesm.web2mexadl.plugin.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Generate MVC architecture description"
+               class="mx.itesm.web2mexadl.plugin.popup.actions.MvcAction"
+               menubarPath="mx.itesm.web2mexadl.plugin.menu1/group1"
+               enablesFor="1"
+               id="mx.itesm.web2mexadl.plugin.newAction">
+         </action>
+      </objectContribution>
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.war"
+            id="mx.itesm.web2mexadl.plugin.contribution1">
+         <menu
+               label="Web2MexADL"
+               path="additions"
+               id="mx.itesm.web2mexadl.plugin.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Generate MVC architecture description"
+               class="mx.itesm.web2mexadl.plugin.popup.actions.MvcAction"
+               menubarPath="mx.itesm.web2mexadl.plugin.menu1/group1"
+               enablesFor="1"
+               id="mx.itesm.web2mexadl.plugin.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

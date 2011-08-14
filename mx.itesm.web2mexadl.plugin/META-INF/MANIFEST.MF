@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Web2MexADL
+Bundle-SymbolicName: mx.itesm.web2mexadl.plugin; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: mx.itesm.web2mexadl.plugin.Activator
+Bundle-Vendor: ITESM
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/asm-all-3.2.jar,
+ lib/commons-io-2.0.1.jar,
+ lib/commons-lang3-3.0.jar,
+ lib/junit.jar,
+ lib/weka.jar,
+ .,
+ lib/mx.itesm.web2mexadl.jar

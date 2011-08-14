@@ -437,7 +437,7 @@ public class MvcAnalyzer {
      * @param currentPackage
      */
     public static void addImplementationPackage(final StringBuilder currentPackages, final String currentPackage) {
-        if (currentPackage.indexOf('.') > 0) {
+        if ((currentPackage.indexOf('.') > 0) && (currentPackage.indexOf('/') == 0)) {
             if (currentPackages.length() == 0) {
                 currentPackages.append(MvcAnalyzer.MAIN_IMPLEMENTATION.replace("PACKAGE", currentPackage)).append("\n");
             } else {
