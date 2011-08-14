@@ -1,4 +1,4 @@
-package mx.itesm.arch.dependencies;
+package mx.itesm.web2mexadl.dependencies;
 
 /**
  * Command to execute during the graphic export process.

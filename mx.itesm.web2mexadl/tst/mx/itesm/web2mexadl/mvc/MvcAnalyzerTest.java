@@ -1,6 +1,8 @@
-package mx.itesm.arch.mvc;
+package mx.itesm.web2mexadl.mvc;
 
 import java.io.File;
+
+import mx.itesm.web2mexadl.mvc.MvcAnalyzer;
 
 import junit.framework.TestCase;
 

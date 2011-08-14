@@ -1,4 +1,4 @@
-package mx.itesm.arch.mvc;
+package mx.itesm.web2mexadl.mvc;
 
 import weka.core.Attribute;
 import weka.core.FastVector;

@@ -1,10 +1,10 @@
-package mx.itesm.arch.mvc;
+package mx.itesm.web2mexadl.mvc;
 
 import java.util.Map;
 
-import mx.itesm.arch.dependencies.ClassDependencies;
-import mx.itesm.arch.dependencies.DependenciesUtil;
-import mx.itesm.arch.dependencies.ExportCommand;
+import mx.itesm.web2mexadl.dependencies.ClassDependencies;
+import mx.itesm.web2mexadl.dependencies.DependenciesUtil;
+import mx.itesm.web2mexadl.dependencies.ExportCommand;
 
 /**
  * Export command that adds the MVC data to the graphic export process.

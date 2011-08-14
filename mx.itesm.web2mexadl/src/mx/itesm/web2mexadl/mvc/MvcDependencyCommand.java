@@ -1,6 +1,6 @@
-package mx.itesm.arch.mvc;
+package mx.itesm.web2mexadl.mvc;
 
-import mx.itesm.arch.dependencies.DependencyCommand;
+import mx.itesm.web2mexadl.dependencies.DependencyCommand;
 
 /**
  * Dependency Command that adds the project's web pages and configuration files

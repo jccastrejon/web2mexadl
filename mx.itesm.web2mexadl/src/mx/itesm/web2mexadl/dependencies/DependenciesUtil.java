@@ -1,4 +1,4 @@
-package mx.itesm.arch.dependencies;
+package mx.itesm.web2mexadl.dependencies;
 
 import java.io.File;
 import java.io.FileWriter;

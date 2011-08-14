@@ -1,4 +1,4 @@
-package mx.itesm.arch.mvc;
+package mx.itesm.web2mexadl.mvc;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,9 +10,9 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import mx.itesm.arch.dependencies.ClassDependencies;
-import mx.itesm.arch.dependencies.DependenciesUtil;
-import mx.itesm.arch.dependencies.DependencyAnalyzer;
+import mx.itesm.web2mexadl.dependencies.ClassDependencies;
+import mx.itesm.web2mexadl.dependencies.DependenciesUtil;
+import mx.itesm.web2mexadl.dependencies.DependencyAnalyzer;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
