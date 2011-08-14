@@ -2,7 +2,7 @@ package mx.itesm.web2mexadl.plugin.popup.actions;
 
 import java.io.File;
 
-import mx.itesm.arch.mvc.MvcAnalyzer;
+import mx.itesm.web2mexadl.mvc.MvcAnalyzer;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
