@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Web2MexADL
 Bundle-SymbolicName: mx.itesm.web2mexadl.plugin; singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0.0
 Bundle-Activator: mx.itesm.web2mexadl.plugin.Activator
 Bundle-Vendor: ITESM
 Require-Bundle: org.eclipse.ui,
