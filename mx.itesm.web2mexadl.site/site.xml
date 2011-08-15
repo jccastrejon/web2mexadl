@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/mx.itesm.web2mexadl.feature_1.0.0.201108141915.jar" id="mx.itesm.web2mexadl.feature" version="1.0.0.201108141915">
+      <category name="Web2MexADL"/>
+   </feature>
+   <category-def name="Web2MexADL" label="Web2MexADL"/>
+</site>
