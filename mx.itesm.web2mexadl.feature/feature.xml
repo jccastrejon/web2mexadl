@@ -2,7 +2,7 @@
 <feature
       id="mx.itesm.web2mexadl.feature"
       label="Web2MexADL"
-      version="1.0.0.qualifier"
+      version="1.0.0.0"
       provider-name="ITESM">
 
    <description url="http://code.google.com/p/web2mexadl">
@@ -14,7 +14,7 @@
    </copyright>
 
    <license url="http://gplv3.fsf.org/">
-    Web2MexADL - Generation of an Architecture View for Web Applications through the use of a Bayesian Network Classifier
+      Web2MexADL - Generation of an Architecture View for Web Applications through the use of a Bayesian Network Classifier
     Copyright (C) 2011  jccastrejon
 
     This program is free software: you can redistribute it and/or modify
