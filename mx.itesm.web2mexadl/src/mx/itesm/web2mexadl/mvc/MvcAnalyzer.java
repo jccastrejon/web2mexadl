@@ -5,24 +5,21 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import mx.itesm.web2mexadl.dependencies.ClassDependencies;
 import mx.itesm.web2mexadl.dependencies.DependenciesUtil;
 import mx.itesm.web2mexadl.dependencies.DependencyAnalyzer;
+import mx.itesm.web2mexadl.util.Util;
+import mx.itesm.web2mexadl.util.Util.Variable;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import weka.classifiers.Classifier;
-import weka.core.Attribute;
 import weka.core.FastVector;
 import weka.core.Instance;
 import weka.core.Instances;
-import weka.core.SerializationHelper;
 
 /**
  * Classify components in a web project according to the MVC pattern.
@@ -33,121 +30,9 @@ import weka.core.SerializationHelper;
 public class MvcAnalyzer {
 
     /**
-     * Template for main implementation packages.
-     */
-    private static final String MAIN_IMPLEMENTATION = "<javaimplementation:mainClass xsi:type='javaimplementation:JavaClassFile'>"
-            + "<javaimplementation:javaClassName xsi:type='javaimplementation:JavaClassName'>PACKAGE..**</javaimplementation:javaClassName>"
-            + "</javaimplementation:mainClass>";
-
-    /**
-     * Template for auxiliary implementation packages.
-     */
-    private static final String AUX_IMPLEMENTATION = "<javaimplementation:auxClass xsi:type='javaimplementation:JavaClassFile'>"
-            + "<javaimplementation:javaClassName xsi:type='javaimplementation:JavaClassName'>PACKAGE..**</javaimplementation:javaClassName>"
-            + "</javaimplementation:auxClass>";
-
-    /**
-     * Random Variables used in the Uncertainty model.
-     * 
-     * @author jccastrejon
-     * 
-     */
-    public enum Variable {
-        Type("variable.type"), ExternalAPI("variable.externalApi"), Suffix("variable.suffix");
-
-        /**
-         * Variable property name.
-         */
-        private String variableName;
-
-        /**
-         * Variable attribute.
-         */
-        private Attribute attribute;
-
-        /**
-         * Constructor that specifies the Variable's property name. The
-         * attribute's values are read from the
-         * <em>MvcAnalyzer.classifierVariables</em> properties.
-         * 
-         * @param variableName
-         *            Variable Name.
-         */
-        private Variable(final String variableName) {
-            String[] propertyValues;
-            FastVector valuesVector;
-
-            // Load property values
-            propertyValues = MvcAnalyzer.getPropertyValues(variableName);
-            valuesVector = new FastVector(propertyValues.length);
-            for (String propertyValue : propertyValues) {
-                valuesVector.addElement(propertyValue);
-            }
-
-            this.variableName = variableName;
-            this.attribute = new Attribute(this.toString(), valuesVector, this.ordinal());
-        }
-
-        /**
-         * Get the variables property name.
-         * 
-         * @return Property name.
-         */
-        public String getVariableName() {
-            return this.variableName;
-        }
-
-        /**
-         * Get the variable's attribute.
-         * 
-         * @return Attribute.
-         */
-        public Attribute getAttribute() {
-            return this.attribute;
-        }
-    };
-
-    /**
-     * Path to the properties file containing the model's variables.
-     */
-    private final static String PROPERTIES_FILE_PATH = "/mvc-variables-grails-play-struts-roo.properties";
-
-    /**
-     * Path to the file containing the model's classifier.
-     */
-    private final static String CLASSIFIER_FILE_PATH = "/mvc-classifier-grails-play-struts-roo.model";
-
-    /**
-     * Properties file containing the variables data.
-     */
-    private static Properties classifierVariables;
-
-    /**
-     * MVC Classifier.
-     */
-    private static Classifier classifier;
-
-    /**
      * Class logger.
      */
     private static Logger logger = Logger.getLogger(MvcAnalyzer.class.getName());
-
-    /**
-     * Initialize properties file.
-     */
-    static {
-        MvcAnalyzer.classifierVariables = new Properties();
-
-        try {
-            MvcAnalyzer.classifierVariables.load(MvcAnalyzer.class
-                    .getResourceAsStream(MvcAnalyzer.PROPERTIES_FILE_PATH));
-
-            MvcAnalyzer.classifier = (Classifier) SerializationHelper.read(MvcAnalyzer.class
-                    .getResourceAsStream(MvcAnalyzer.CLASSIFIER_FILE_PATH));
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "Properties file: " + MvcAnalyzer.PROPERTIES_FILE_PATH + " could not be read", e);
-        }
-    }
 
     /**
      * Classify each class within the specified path into one of the layers of
@@ -172,7 +57,7 @@ public class MvcAnalyzer {
         // Classify each class in the specified path
         dependencies = DependencyAnalyzer.getDirectoryDependencies(path.getAbsolutePath(), new MvcDependencyCommand());
         internalPackages = DependenciesUtil.getInternalPackages(dependencies,
-                MvcAnalyzer.getPropertyValues(MvcAnalyzer.Variable.Type.getVariableName()));
+                Util.getPropertyValues(Util.Variable.Type.getVariableName()));
         returnValue = MvcAnalyzer.generateArchitecture(dependencies, internalPackages, outputFile.getParentFile());
 
         if (outputFile != null) {
@@ -213,7 +98,7 @@ public class MvcAnalyzer {
         }
 
         internalPackages = DependenciesUtil.getInternalPackages(dependencies,
-                MvcAnalyzer.getPropertyValues(MvcAnalyzer.Variable.Type.getVariableName()));
+                Util.getPropertyValues(Util.Variable.Type.getVariableName()));
         returnValue = MvcAnalyzer.generateArchitecture(dependencies, internalPackages, outputFile.getParentFile());
 
         if (outputFile != null) {
@@ -274,18 +159,18 @@ public class MvcAnalyzer {
         instances.setClassIndex(Variable.values().length);
 
         // Valid suffixes to look for in the class names
-        suffixValues = MvcAnalyzer.getPropertyValues(MvcAnalyzer.Variable.Suffix.getVariableName());
+        suffixValues = Util.getPropertyValues(Util.Variable.Suffix.getVariableName());
 
         // Valid file types to look for in the component names
-        typeValues = MvcAnalyzer.getPropertyValues(MvcAnalyzer.Variable.Type.getVariableName());
+        typeValues = Util.getPropertyValues(Util.Variable.Type.getVariableName());
 
         // Valid external api packages to look for in the classes dependencies
-        externalApiValues = MvcAnalyzer.getPropertyValues(MvcAnalyzer.Variable.ExternalAPI.getVariableName());
+        externalApiValues = Util.getPropertyValues(Util.Variable.ExternalAPI.getVariableName());
         externalApiPackages = new HashMap<String, String[]>(externalApiValues.length);
         for (int i = 0; i < externalApiValues.length; i++) {
             if (!externalApiValues[i].equals("none")) {
                 externalApiPackages.put(externalApiValues[i],
-                        MvcAnalyzer.getPropertyValues("externalApi." + externalApiValues[i] + ".packages"));
+                        Util.getPropertyValues("externalApi." + externalApiValues[i] + ".packages"));
             }
         }
 
@@ -352,7 +237,7 @@ public class MvcAnalyzer {
             instance.setDataset(instances);
 
             try {
-                instanceLayer = (int) MvcAnalyzer.classifier.classifyInstance(instance);
+                instanceLayer = (int) Util.classifier.classifyInstance(instance);
             } catch (Exception e) {
                 // Default value
                 instanceLayer = 0;
@@ -385,13 +270,13 @@ public class MvcAnalyzer {
 
             if ((modelCount > viewCount) && (modelCount > controllerCount)) {
                 packagesClassification.put(currentPackage, Layer.Model);
-                MvcAnalyzer.addImplementationPackage(modelPackages, currentPackage);
+                Util.addImplementationPackage(modelPackages, currentPackage);
             } else if ((viewCount > modelCount) && (viewCount > controllerCount)) {
                 packagesClassification.put(currentPackage, Layer.View);
-                MvcAnalyzer.addImplementationPackage(viewPackages, currentPackage);
+                Util.addImplementationPackage(viewPackages, currentPackage);
             } else if ((controllerCount > viewCount) && (controllerCount > modelCount)) {
                 packagesClassification.put(currentPackage, Layer.Controller);
-                MvcAnalyzer.addImplementationPackage(controllerPackages, currentPackage);
+                Util.addImplementationPackage(controllerPackages, currentPackage);
             } else {
                 packagesClassification.put(currentPackage, null);
             }
@@ -433,21 +318,6 @@ public class MvcAnalyzer {
 
     /**
      * 
-     * @param currentPackages
-     * @param currentPackage
-     */
-    public static void addImplementationPackage(final StringBuilder currentPackages, final String currentPackage) {
-        if ((currentPackage.indexOf('.') > 0) && (currentPackage.indexOf('/') == 0)) {
-            if (currentPackages.length() == 0) {
-                currentPackages.append(MvcAnalyzer.MAIN_IMPLEMENTATION.replace("PACKAGE", currentPackage)).append("\n");
-            } else {
-                currentPackages.append(MvcAnalyzer.AUX_IMPLEMENTATION.replace("PACKAGE", currentPackage)).append("\n");
-            }
-        }
-    }
-
-    /**
-     * 
      * @param modelPackages
      * @param controllerPackages
      * @param viewPackages
@@ -462,7 +332,7 @@ public class MvcAnalyzer {
         outputFile = new File(outputDir, "architecture.xml");
         FileUtils.deleteQuietly(outputFile);
         FileUtils.copyInputStreamToFile(
-                MvcAnalyzer.class.getResourceAsStream("/mx/itesm/arch/templates/ArchitectureTemplate.xml"), outputFile);
+                MvcAnalyzer.class.getResourceAsStream("/mx/itesm/web2mexadl/templates/ArchitectureTemplate.xml"), outputFile);
 
         // Update template with implementation packages
         outputContents = FileUtils.readFileToString(outputFile, "UTF-8");
@@ -472,29 +342,5 @@ public class MvcAnalyzer {
 
         // Final architecture
         FileUtils.write(outputFile, outputContents);
-    }
-
-    /**
-     * Get a property's values, specified in the MvcAnalyzer.classifierVariables
-     * properties file.
-     * 
-     * @param propertyName
-     *            Property name.
-     * @return Property's values.
-     */
-    public static String[] getPropertyValues(final String propertyName) {
-        String[] returnValue;
-
-        if ((propertyName == null) || (!MvcAnalyzer.classifierVariables.containsKey(propertyName))) {
-            throw new IllegalArgumentException("Invalid property: " + propertyName);
-        }
-
-        // Make sure all the values are in lower case
-        returnValue = MvcAnalyzer.classifierVariables.getProperty(propertyName).split(",");
-        for (int i = 0; i < returnValue.length; i++) {
-            returnValue[i] = returnValue[i].toLowerCase();
-        }
-
-        return returnValue;
     }
 }

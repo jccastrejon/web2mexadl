@@ -1,5 +1,6 @@
 package mx.itesm.web2mexadl.mvc;
 
+import mx.itesm.web2mexadl.util.Util;
 import weka.core.Attribute;
 import weka.core.FastVector;
 
@@ -74,7 +75,7 @@ public enum Layer {
             valuesVector.addElement(layer.toString());
         }
 
-        attribute = new Attribute("Layer", valuesVector, MvcAnalyzer.Variable.values().length + 1);
+        attribute = new Attribute("Layer", valuesVector, Util.Variable.values().length + 1);
     }
 
     /**

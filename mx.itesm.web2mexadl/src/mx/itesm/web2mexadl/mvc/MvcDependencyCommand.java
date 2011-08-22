@@ -1,6 +1,7 @@
 package mx.itesm.web2mexadl.mvc;
 
 import mx.itesm.web2mexadl.dependencies.DependencyCommand;
+import mx.itesm.web2mexadl.util.Util;
 
 /**
  * Dependency Command that adds the project's web pages and configuration files
@@ -14,7 +15,7 @@ public class MvcDependencyCommand implements DependencyCommand {
     /**
      * Valid components to be analyzed.
      */
-    private static String[] VALID_TYPES = MvcAnalyzer.getPropertyValues(MvcAnalyzer.Variable.Type.getVariableName());
+    private static String[] VALID_TYPES = Util.getPropertyValues(Util.Variable.Type.getVariableName());
 
     @Override
     public String execute(String fileName) {
