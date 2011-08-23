@@ -1,5 +1,6 @@
 package mx.itesm.web2mexadl.cluster;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import mx.itesm.web2mexadl.dependencies.ClassDependencies;
@@ -28,8 +30,17 @@ import weka.clusterers.EM;
  */
 public class ClusterAnalyzer {
 
-    public static void classifyClassesInWar(final File file, final File outputFile) throws Exception {
+    /**
+     * 
+     * @param file
+     * @param includeExternal
+     * @param outputFile
+     * @throws Exception
+     */
+    public static void classifyClassesInWar(final File file, final boolean includeExternal, final File outputFile)
+            throws Exception {
         Dataset[] clusters;
+        Map<String, Cluster> returnValue;
         List<ClassDependencies> dependencies;
         Map<String, Set<String>> internalPackages;
 
@@ -46,7 +57,12 @@ public class ClusterAnalyzer {
                 Util.getPropertyValues(Util.Variable.Type.getVariableName()));
 
         clusters = ClusterAnalyzer.generateClusters(dependencies);
-        ClusterAnalyzer.generateArchitecture(clusters, internalPackages);
+        returnValue = ClusterAnalyzer.generateArchitecture(clusters, internalPackages);
+
+        if (outputFile != null) {
+            DependenciesUtil.exportDependenciesToSVG(dependencies, includeExternal, outputFile, internalPackages,
+                    new ClusterExportCommand(returnValue));
+        }
     }
 
     /**
@@ -55,8 +71,10 @@ public class ClusterAnalyzer {
      * @param outputFile
      * @throws IOException
      */
-    public static void classifyClassesInDirectory(final File path, final File outputFile) throws IOException {
+    public static void classifyClassesInDirectory(final File path, final boolean includeExternal, final File outputFile)
+            throws IOException {
         Dataset[] clusters;
+        Map<String, Cluster> returnValue;
         List<ClassDependencies> dependencies;
         Map<String, Set<String>> internalPackages;
 
@@ -66,7 +84,12 @@ public class ClusterAnalyzer {
                 Util.getPropertyValues(Util.Variable.Type.getVariableName()));
 
         clusters = ClusterAnalyzer.generateClusters(dependencies);
-        ClusterAnalyzer.generateArchitecture(clusters, internalPackages);
+        returnValue = ClusterAnalyzer.generateArchitecture(clusters, internalPackages);
+
+        if (outputFile != null) {
+            DependenciesUtil.exportDependenciesToSVG(dependencies, includeExternal, outputFile, internalPackages,
+                    new ClusterExportCommand(returnValue));
+        }
     }
 
     /**
@@ -176,29 +199,47 @@ public class ClusterAnalyzer {
 
     /**
      * 
-     * @param clusters
+     * @param clustersData
      * @param internalPackages
      */
-    private static void generateArchitecture(final Dataset[] clusters, final Map<String, Set<String>> internalPackages) {
+    private static Map<String, Cluster> generateArchitecture(final Dataset[] clustersData,
+            final Map<String, Set<String>> internalPackages) {
         int maxCount;
         int clusterIndex;
         int[] clustersCounts;
+        Cluster[] clusters;
         List<Integer> clusterCountsList;
+        Map<String, Cluster> returnValue;
         Set<String> currentPackageContent;
+        StringBuilder[] implementationPackages;
         HashMap<String, Integer> clusterClasses;
         Map<String, Integer> packagesClassification;
 
         // Get the clusters assignments
         clusterIndex = -1;
         clusterClasses = new HashMap<String, Integer>();
-        for (Dataset cluster : clusters) {
+        for (Dataset cluster : clustersData) {
             clusterIndex++;
             for (Object clazz : cluster.classes()) {
                 clusterClasses.put(clazz.toString(), clusterIndex);
             }
         }
 
-        clustersCounts = new int[clusters.length];
+        // Initialize clusters
+        clusters = new Cluster[clustersData.length];
+        for (int i = 0; i < clustersData.length; i++) {
+            clusters[i] = new Cluster(ClusterAnalyzer.getRandomColor());
+        }
+
+        // Initialize implementation packages
+        implementationPackages = new StringBuilder[clustersData.length];
+        for (int i = 0; i < implementationPackages.length; i++) {
+            implementationPackages[i] = new StringBuilder();
+        }
+
+        // Classify packages
+        clustersCounts = new int[clustersData.length];
+        returnValue = new HashMap<String, Cluster>();
         packagesClassification = new HashMap<String, Integer>(internalPackages.size());
         for (String currentPackage : internalPackages.keySet()) {
             currentPackageContent = internalPackages.get(currentPackage);
@@ -206,6 +247,7 @@ public class ClusterAnalyzer {
                 // Check if this component was assigned to any cluster
                 if (clusterClasses.keySet().contains(component)) {
                     clustersCounts[clusterClasses.get(component)]++;
+                    returnValue.put(component, clusters[clusterClasses.get(component)]);
                 }
             }
 
@@ -219,11 +261,42 @@ public class ClusterAnalyzer {
             for (int i = 0; i < clustersCounts.length; i++) {
                 if (clustersCounts[i] == maxCount) {
                     packagesClassification.put(currentPackage, i);
+                    Util.addImplementationPackage(implementationPackages[i], currentPackage);
                     break;
                 }
             }
-
-            System.out.println(currentPackage + ": " + packagesClassification.get(currentPackage));
         }
+
+        return returnValue;
+    }
+
+    /**
+     * Based on:
+     * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate
+     * -an-aesthetically-pleasing-color-palette
+     * 
+     * @return
+     */
+    private static Color getRandomColor() {
+        int red;
+        int blue;
+        int green;
+        Random random;
+        Color mixColor;
+        Color returnValue;
+
+        mixColor = new Color(255, 255, 255);
+        random = new Random();
+        red = random.nextInt(256);
+        green = random.nextInt(256);
+        blue = random.nextInt(256);
+
+        // mix the color
+        red = (red + mixColor.getRed()) / 2;
+        green = (green + mixColor.getGreen()) / 2;
+        blue = (blue + mixColor.getBlue()) / 2;
+
+        returnValue = new Color(red, green, blue);
+        return returnValue;
     }
 }

@@ -1,7 +1,6 @@
 package mx.itesm.web2mexadl.cluster;
 
 import java.io.File;
-import java.io.IOException;
 
 import junit.framework.TestCase;
 
@@ -12,6 +11,6 @@ import junit.framework.TestCase;
  */
 public class ClusterAnalyzerTest extends TestCase {
     public void testClassifyClassesInDirectory() throws Exception {
-        ClusterAnalyzer.classifyClassesInWar(new File("./tst/petclinic-0.1.0.war"), new File("./tst/test.svg"));
+        ClusterAnalyzer.classifyClassesInWar(new File("./tst/petclinic-0.1.0.war"), false, new File("./tst/testCluster.svg"));
     }
 }
