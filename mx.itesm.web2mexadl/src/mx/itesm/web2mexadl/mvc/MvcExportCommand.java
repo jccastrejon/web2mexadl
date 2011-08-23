@@ -51,6 +51,7 @@ public class MvcExportCommand implements ExportCommand {
     public String getDescription() {
         StringBuilder returnValue;
 
+        // Create layers descriptions
         returnValue = new StringBuilder();
         for (Layer layer : Layer.values()) {
             returnValue.append("\n\t" + layer + "Layer [label=\"" + layer + "\",color=\"" + layer.getRgbColor()
@@ -63,6 +64,7 @@ public class MvcExportCommand implements ExportCommand {
             returnValue.append(layer + "Layer; ");
         }
 
+        // Group invalid layers descriptions
         returnValue.append("\n");
         for (Layer layer : Layer.values()) {
             if (layer.toString().contains("Invalid")) {
@@ -72,6 +74,7 @@ public class MvcExportCommand implements ExportCommand {
         returnValue.replace(returnValue.lastIndexOf("->"), returnValue.lastIndexOf("->") + 3, "");
         returnValue.append(" [style=\"invis\"];\n");
 
+        // Group valid layers descriptions
         returnValue.append("\n");
         for (Layer layer : Layer.values()) {
             if (!layer.toString().contains("Invalid")) {
