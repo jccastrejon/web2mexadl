@@ -11,7 +11,7 @@ import junit.framework.TestCase;
  * 
  */
 public class ClusterAnalyzerTest extends TestCase {
-    public void testClassifyClassesInDirectory() throws IOException {
+    public void testClassifyClassesInDirectory() throws Exception {
         ClusterAnalyzer.classifyClassesInWar(new File("./tst/petclinic-0.1.0.war"), new File("./tst/test.svg"));
     }
 }

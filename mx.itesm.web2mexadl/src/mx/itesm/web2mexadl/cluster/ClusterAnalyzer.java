@@ -2,11 +2,15 @@ package mx.itesm.web2mexadl.cluster;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import mx.itesm.web2mexadl.dependencies.ClassDependencies;
+import mx.itesm.web2mexadl.dependencies.DependenciesUtil;
 import mx.itesm.web2mexadl.dependencies.DependencyAnalyzer;
 import mx.itesm.web2mexadl.mvc.MvcDependencyCommand;
 import mx.itesm.web2mexadl.util.Util;
@@ -24,30 +28,10 @@ import weka.clusterers.EM;
  */
 public class ClusterAnalyzer {
 
-    /**
-     * 
-     * @param path
-     * @param outputFile
-     * @throws IOException
-     */
-    public static void classifyClassesInDirectory(final File path, final File outputFile) throws IOException {
+    public static void classifyClassesInWar(final File file, final File outputFile) throws Exception {
         Dataset[] clusters;
         List<ClassDependencies> dependencies;
-
-        dependencies = DependencyAnalyzer.getDirectoryDependencies(path.getAbsolutePath(), new MvcDependencyCommand());
-        clusters = ClusterAnalyzer.generateClusters(dependencies);
-        System.out.println(clusters);
-    }
-
-    /**
-     * 
-     * @param path
-     * @param outputFile
-     * @throws IOException
-     */
-    public static void classifyClassesInWar(final File file, final File outputFile) throws IOException {
-        Dataset[] clusters;
-        List<ClassDependencies> dependencies;
+        Map<String, Set<String>> internalPackages;
 
         // Classify each class in the specified war
         dependencies = DependencyAnalyzer.getWarDependencies(file.getAbsolutePath(), new MvcDependencyCommand());
@@ -58,8 +42,31 @@ public class ClusterAnalyzer {
             dependency.setPackageName(dependency.getPackageName().replace("WEB-INF.classes.", ""));
         }
 
+        internalPackages = DependenciesUtil.getInternalPackages(dependencies,
+                Util.getPropertyValues(Util.Variable.Type.getVariableName()));
+
         clusters = ClusterAnalyzer.generateClusters(dependencies);
-        System.out.println(clusters);
+        ClusterAnalyzer.generateArchitecture(clusters, internalPackages);
+    }
+
+    /**
+     * 
+     * @param path
+     * @param outputFile
+     * @throws IOException
+     */
+    public static void classifyClassesInDirectory(final File path, final File outputFile) throws IOException {
+        Dataset[] clusters;
+        List<ClassDependencies> dependencies;
+        Map<String, Set<String>> internalPackages;
+
+        // Classify each class in the specified path
+        dependencies = DependencyAnalyzer.getDirectoryDependencies(path.getAbsolutePath(), new MvcDependencyCommand());
+        internalPackages = DependenciesUtil.getInternalPackages(dependencies,
+                Util.getPropertyValues(Util.Variable.Type.getVariableName()));
+
+        clusters = ClusterAnalyzer.generateClusters(dependencies);
+        ClusterAnalyzer.generateArchitecture(clusters, internalPackages);
     }
 
     /**
@@ -157,8 +164,7 @@ public class ClusterAnalyzer {
             }
 
             // Save instance data
-            dataset.add(new DenseInstance(values, classDependencies.getPackageName() + "."
-                    + classDependencies.getClassName()));
+            dataset.add(new DenseInstance(values, classDependencies.getClassName()));
         }
 
         // Generate clusters
@@ -166,5 +172,58 @@ public class ClusterAnalyzer {
         returnValue = clusterer.cluster(dataset);
 
         return returnValue;
+    }
+
+    /**
+     * 
+     * @param clusters
+     * @param internalPackages
+     */
+    private static void generateArchitecture(final Dataset[] clusters, final Map<String, Set<String>> internalPackages) {
+        int maxCount;
+        int clusterIndex;
+        int[] clustersCounts;
+        List<Integer> clusterCountsList;
+        Set<String> currentPackageContent;
+        HashMap<String, Integer> clusterClasses;
+        Map<String, Integer> packagesClassification;
+
+        // Get the clusters assignments
+        clusterIndex = -1;
+        clusterClasses = new HashMap<String, Integer>();
+        for (Dataset cluster : clusters) {
+            clusterIndex++;
+            for (Object clazz : cluster.classes()) {
+                clusterClasses.put(clazz.toString(), clusterIndex);
+            }
+        }
+
+        clustersCounts = new int[clusters.length];
+        packagesClassification = new HashMap<String, Integer>(internalPackages.size());
+        for (String currentPackage : internalPackages.keySet()) {
+            currentPackageContent = internalPackages.get(currentPackage);
+            for (String component : currentPackageContent) {
+                // Check if this component was assigned to any cluster
+                if (clusterClasses.keySet().contains(component)) {
+                    clustersCounts[clusterClasses.get(component)]++;
+                }
+            }
+
+            // Get the package cluster according to the most common cluster
+            // between the package contents
+            clusterCountsList = new ArrayList<Integer>(clustersCounts.length);
+            for (int i : clustersCounts) {
+                clusterCountsList.add(i);
+            }
+            maxCount = Collections.max(clusterCountsList);
+            for (int i = 0; i < clustersCounts.length; i++) {
+                if (clustersCounts[i] == maxCount) {
+                    packagesClassification.put(currentPackage, i);
+                    break;
+                }
+            }
+
+            System.out.println(currentPackage + ": " + packagesClassification.get(currentPackage));
+        }
     }
 }
