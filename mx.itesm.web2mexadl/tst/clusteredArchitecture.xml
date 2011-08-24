@@ -2800,7 +2800,9 @@
 <types:archTypes xsi:type="types:ArchTypes">
         <types:componentType types:id="componentTypeffa80141-f9c97205-82195669-9e4a18e0" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_0Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation" />
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            
+            </implementation:implementation>
         </types:componentType>
         
         
@@ -2810,15 +2812,24 @@
         
         <types:componentType types:id="componentTypeffa80141-f9ca32f7-56c9edc6-9e4a18e8" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_3Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation" />
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <javaimplementation:mainClass xsi:type='javaimplementation:JavaClassFile'><javaimplementation:javaClassName xsi:type='javaimplementation:JavaClassName'>com.springsource.petclinic.web..**</javaimplementation:javaClassName></javaimplementation:mainClass>
+
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca3962-1ad51eb9-9e4a18e9" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_2Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation" />
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <javaimplementation:mainClass xsi:type='javaimplementation:JavaClassFile'><javaimplementation:javaClassName xsi:type='javaimplementation:JavaClassName'>com.springsource.petclinic.reference..**</javaimplementation:javaClassName></javaimplementation:mainClass>
+
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca3fa9-f9cff1ae-9e4a18ea" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_1Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation" />
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <javaimplementation:mainClass xsi:type='javaimplementation:JavaClassFile'><javaimplementation:javaClassName xsi:type='javaimplementation:JavaClassName'>com.springsource.petclinic.domain..**</javaimplementation:javaClassName></javaimplementation:mainClass>
+
+            </implementation:implementation>
         </types:componentType>
     </types:archTypes>
 </instance:xArch>

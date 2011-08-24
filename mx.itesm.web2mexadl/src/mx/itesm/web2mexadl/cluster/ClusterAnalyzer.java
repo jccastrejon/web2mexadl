@@ -26,6 +26,8 @@ import net.sf.javaml.core.DefaultDataset;
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.tools.weka.WekaClusterer;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -348,14 +350,17 @@ public class ClusterAnalyzer {
     @SuppressWarnings("unchecked")
     public static void exportToMexADL(final File outputDir, final StringBuilder... implementationPackages)
             throws IOException, JDOMException {
+        File outputFile;
         Document document;
         String identifier;
         List<Element> links;
+        String outputContents;
         XMLOutputter outputter;
         List<Element> components;
         List<Element> connectors;
         List<Element> componentTypes;
         List<Element> validComponents;
+        StringBuilder implementationPackage;
 
         document = ClusterAnalyzer.saxBuilder.build(MvcAnalyzer.class
                 .getResourceAsStream("/mx/itesm/web2mexadl/templates/ClusterTemplate.xml"));
@@ -428,9 +433,23 @@ public class ClusterAnalyzer {
             }
         }
 
-        // Write architecture document
+        // Write base architecture document
         outputter = new XMLOutputter();
-        outputter.output(document, new FileWriter(new File(outputDir, "clusteredArchitecture.xml")));
+        outputFile = new File(outputDir, "clusteredArchitecture.xml");
+        FileUtils.deleteQuietly(outputFile);
+        outputter.output(document, new FileWriter(outputFile));
+
+        // Update implementation packages
+        outputContents = FileUtils.readFileToString(outputFile, "UTF-8");
+        for (int i = 0; i < implementationPackages.length; i++) {
+            implementationPackage = implementationPackages[i];
+            outputContents = StringUtils.replace(outputContents, "<!-- Cluster_" + i + " implementation -->",
+                    implementationPackage.toString());
+        }
+        
+        // Write final architecture document
+        FileUtils.deleteQuietly(outputFile);
+        FileUtils.write(outputFile, outputContents);
     }
 
     /**

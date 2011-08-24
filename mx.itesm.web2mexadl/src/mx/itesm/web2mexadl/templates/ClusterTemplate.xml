@@ -3658,43 +3658,63 @@
 <types:archTypes xsi:type="types:ArchTypes">
         <types:componentType types:id="componentTypeffa80141-f9c97205-82195669-9e4a18e0" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_0Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_0 implementation -->
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca041f-7ba39301-9e4a18e2" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_9Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_9 implementation -->
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca1122-247da109-9e4a18e3" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_8Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_8 implementation -->
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca187c-30df7d1b-9e4a18e4" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_7Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_7 implementation -->
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca1f41-f798f544-9e4a18e5" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_6Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_6 implementation -->
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca260b-c3ed2d72-9e4a18e6" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_5Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_5 implementation -->
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca2cbd-6414568f-9e4a18e7" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_4Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_4 implementation -->
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca32f7-56c9edc6-9e4a18e8" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_3Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_3 implementation -->
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca3962-1ad51eb9-9e4a18e9" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_2Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_2 implementation -->
+            </implementation:implementation>
         </types:componentType>
         <types:componentType types:id="componentTypeffa80141-f9ca3fa9-f9cff1ae-9e4a18ea" xsi:type="implementation:VariantComponentTypeImpl">
             <types:description xsi:type="instance:Description">Cluster_1Type</types:description>
-            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation">
+            <!-- Cluster_1 implementation -->
+            </implementation:implementation>
         </types:componentType>
     </types:archTypes>
 </instance:xArch>
