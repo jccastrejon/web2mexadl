@@ -2,6 +2,7 @@ package mx.itesm.web2mexadl.cluster;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,10 +11,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import mx.itesm.web2mexadl.dependencies.ClassDependencies;
 import mx.itesm.web2mexadl.dependencies.DependenciesUtil;
 import mx.itesm.web2mexadl.dependencies.DependencyAnalyzer;
+import mx.itesm.web2mexadl.mvc.MvcAnalyzer;
 import mx.itesm.web2mexadl.mvc.MvcDependencyCommand;
 import mx.itesm.web2mexadl.util.Util;
 import net.sf.javaml.clustering.Clusterer;
@@ -21,6 +25,15 @@ import net.sf.javaml.core.Dataset;
 import net.sf.javaml.core.DefaultDataset;
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.tools.weka.WekaClusterer;
+
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.Namespace;
+import org.jdom.input.SAXBuilder;
+import org.jdom.output.XMLOutputter;
+import org.jdom.xpath.XPath;
+
 import weka.clusterers.EM;
 
 /**
@@ -29,6 +42,54 @@ import weka.clusterers.EM;
  * 
  */
 public class ClusterAnalyzer {
+
+    /**
+     * Class logger.
+     */
+    private static Logger logger = Logger.getLogger(ClusterAnalyzer.class.getName());
+
+    /**
+     * xADL Types namespace.
+     */
+    public static final Namespace XADL_TYPES_NAMESPACE = Namespace.getNamespace("types",
+            "http://www.ics.uci.edu/pub/arch/xArch/types.xsd");
+
+    /**
+     * 
+     */
+    private static XPath linksPath;
+
+    /**
+     * 
+     */
+    private static XPath componentsPath;
+
+    /**
+     * 
+     */
+    private static XPath connectorsPath;
+
+    /**
+     * 
+     */
+    private static XPath componentTypesPath;
+
+    /**
+     * 
+     */
+    private static SAXBuilder saxBuilder = new SAXBuilder();
+
+    static {
+        try {
+            ClusterAnalyzer.componentsPath = XPath.newInstance("/instance:xArch/types:archStructure/types:component");
+            ClusterAnalyzer.connectorsPath = XPath.newInstance("/instance:xArch/types:archStructure/types:connector");
+            ClusterAnalyzer.linksPath = XPath.newInstance("/instance:xArch/types:archStructure/types:link");
+            ClusterAnalyzer.componentTypesPath = XPath
+                    .newInstance("/instance:xArch/types:archTypes/types:componentType");
+        } catch (Exception e) {
+            ClusterAnalyzer.logger.log(Level.WARNING, "Error while xpath instances: ", e);
+        }
+    }
 
     /**
      * 
@@ -57,7 +118,7 @@ public class ClusterAnalyzer {
                 Util.getPropertyValues(Util.Variable.Type.getVariableName()));
 
         clusters = ClusterAnalyzer.generateClusters(dependencies);
-        returnValue = ClusterAnalyzer.generateArchitecture(clusters, internalPackages);
+        returnValue = ClusterAnalyzer.generateArchitecture(clusters, internalPackages, outputFile.getParentFile());
 
         if (outputFile != null) {
             DependenciesUtil.exportDependenciesToSVG(dependencies, includeExternal, outputFile, internalPackages,
@@ -68,11 +129,12 @@ public class ClusterAnalyzer {
     /**
      * 
      * @param path
+     * @param includeExternal
      * @param outputFile
-     * @throws IOException
+     * @throws Exception
      */
     public static void classifyClassesInDirectory(final File path, final boolean includeExternal, final File outputFile)
-            throws IOException {
+            throws Exception {
         Dataset[] clusters;
         Map<String, Cluster> returnValue;
         List<ClassDependencies> dependencies;
@@ -84,7 +146,7 @@ public class ClusterAnalyzer {
                 Util.getPropertyValues(Util.Variable.Type.getVariableName()));
 
         clusters = ClusterAnalyzer.generateClusters(dependencies);
-        returnValue = ClusterAnalyzer.generateArchitecture(clusters, internalPackages);
+        returnValue = ClusterAnalyzer.generateArchitecture(clusters, internalPackages, outputFile.getParentFile());
 
         if (outputFile != null) {
             DependenciesUtil.exportDependenciesToSVG(dependencies, includeExternal, outputFile, internalPackages,
@@ -201,9 +263,13 @@ public class ClusterAnalyzer {
      * 
      * @param clustersData
      * @param internalPackages
+     * @param outputDir
+     * @return
+     * @throws JDOMException
+     * @throws IOException
      */
     private static Map<String, Cluster> generateArchitecture(final Dataset[] clustersData,
-            final Map<String, Set<String>> internalPackages) {
+            final Map<String, Set<String>> internalPackages, final File outputDir) throws IOException, JDOMException {
         int maxCount;
         int clusterIndex;
         int[] clustersCounts;
@@ -267,7 +333,104 @@ public class ClusterAnalyzer {
             }
         }
 
+        ClusterAnalyzer.exportToMexADL(outputDir, implementationPackages);
+
         return returnValue;
+    }
+
+    /**
+     * 
+     * @param outputDir
+     * @param implementationPackages
+     * @throws IOException
+     * @throws JDOMException
+     */
+    @SuppressWarnings("unchecked")
+    public static void exportToMexADL(final File outputDir, final StringBuilder... implementationPackages)
+            throws IOException, JDOMException {
+        Document document;
+        String identifier;
+        List<Element> links;
+        XMLOutputter outputter;
+        List<Element> components;
+        List<Element> connectors;
+        List<Element> componentTypes;
+        List<Element> validComponents;
+
+        document = ClusterAnalyzer.saxBuilder.build(MvcAnalyzer.class
+                .getResourceAsStream("/mx/itesm/web2mexadl/templates/ClusterTemplate.xml"));
+        components = (List<Element>) ClusterAnalyzer.componentsPath.selectNodes(document);
+        connectors = (List<Element>) ClusterAnalyzer.connectorsPath.selectNodes(document);
+        links = (List<Element>) ClusterAnalyzer.linksPath.selectNodes(document);
+        componentTypes = (List<Element>) ClusterAnalyzer.componentTypesPath.selectNodes(document);
+
+        // Identify the clusters specified in the implementationPackages
+        validComponents = new ArrayList<Element>(implementationPackages.length);
+        for (int i = 0; i < implementationPackages.length; i++) {
+            for (Element component : components) {
+                if (component.getChild("description", ClusterAnalyzer.XADL_TYPES_NAMESPACE).getValue()
+                        .equals("Cluster_" + i)) {
+                    validComponents.add(component);
+                }
+            }
+        }
+
+        // Remove the unused clusters and their associated connectors and links
+        for (Element component : components) {
+            if (!validComponents.contains(component)) {
+                identifier = component.getChild("description", ClusterAnalyzer.XADL_TYPES_NAMESPACE).getValue();
+                identifier = identifier.substring(identifier.indexOf('_') + 1);
+
+                // Remove component
+                component.detach();
+
+                // Remove component type
+                for (Element type : componentTypes) {
+                    if (type.getChild("description", ClusterAnalyzer.XADL_TYPES_NAMESPACE).getValue()
+                            .equals("Cluster_" + identifier + "Type")) {
+                        type.detach();
+                        break;
+                    }
+                }
+
+                // Remove connector
+                for (Element connector : connectors) {
+                    if (connector.getChild("description", ClusterAnalyzer.XADL_TYPES_NAMESPACE).getValue()
+                            .equals("Connector_" + identifier)) {
+                        connector.detach();
+                        break;
+                    }
+                }
+
+                // Remove links
+                for (Element link : links) {
+                    // Input link
+                    if (link.getChild("description", ClusterAnalyzer.XADL_TYPES_NAMESPACE).getValue()
+                            .equals("in" + identifier)) {
+                        link.detach();
+                    }
+
+                    // Output from this component to other ones
+                    else if (link.getChild("description", ClusterAnalyzer.XADL_TYPES_NAMESPACE).getValue()
+                            .startsWith("out" + identifier)) {
+                        link.detach();
+                    }
+
+                    // Output from other components to this one
+                    else if (link.getChild("description", ClusterAnalyzer.XADL_TYPES_NAMESPACE).getValue()
+                            .startsWith("out")
+                            && link.getChild("description", ClusterAnalyzer.XADL_TYPES_NAMESPACE).getValue()
+                                    .endsWith("-" + identifier)) {
+                        link.detach();
+                    }
+                }
+
+            }
+        }
+
+        // Write architecture document
+        outputter = new XMLOutputter();
+        outputter.output(document, new FileWriter(new File(outputDir, "clusteredArchitecture.xml")));
     }
 
     /**
@@ -285,13 +448,14 @@ public class ClusterAnalyzer {
         Color mixColor;
         Color returnValue;
 
+        // Base color (white)
         mixColor = new Color(255, 255, 255);
         random = new Random();
         red = random.nextInt(256);
         green = random.nextInt(256);
         blue = random.nextInt(256);
 
-        // mix the color
+        // Mix new color with base one
         red = (red + mixColor.getRed()) / 2;
         green = (green + mixColor.getGreen()) / 2;
         blue = (blue + mixColor.getBlue()) / 2;
