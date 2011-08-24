@@ -1,3 +1,21 @@
+/*
+ * Copyright 2011 jccastrejon
+ *  
+ * This file is part of Web2MexADL.
+ *
+ * Web2MexADL is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * Web2MexADL is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with Web2MexADL.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package mx.itesm.web2mexadl.util;
 
 import java.util.Properties;
@@ -12,12 +30,13 @@ import weka.core.FastVector;
 import weka.core.SerializationHelper;
 
 /**
+ * Contains utility methods used in the analysis of web applications.
  * 
  * @author jccastrejon
- *
+ * 
  */
 public class Util {
-    
+
     /**
      * Template for main implementation packages.
      */
@@ -31,7 +50,7 @@ public class Util {
     public static final String AUX_IMPLEMENTATION = "<javaimplementation:auxClass xsi:type='javaimplementation:JavaClassFile'>"
             + "<javaimplementation:javaClassName xsi:type='javaimplementation:JavaClassName'>PACKAGE..**</javaimplementation:javaClassName>"
             + "</javaimplementation:auxClass>";
-    
+
     /**
      * Path to the properties file containing the model's variables.
      */
@@ -41,22 +60,22 @@ public class Util {
      * Path to the file containing the model's classifier.
      */
     private final static String CLASSIFIER_FILE_PATH = "/mvc-classifier-grails-play-struts-roo.model";
-    
+
     /**
      * Class logger.
      */
     private static Logger logger = Logger.getLogger(MvcAnalyzer.class.getName());
-    
+
     /**
      * Properties file containing the variables data.
      */
     public static Properties classifierVariables;
-    
+
     /**
      * MVC Classifier.
      */
     public static Classifier classifier;
-    
+
     /**
      * Random Variables used in the Uncertainty model.
      * 
@@ -117,7 +136,7 @@ public class Util {
             return this.attribute;
         }
     };
-    
+
     /**
      * Initialize properties file.
      */
@@ -125,8 +144,7 @@ public class Util {
         Util.classifierVariables = new Properties();
 
         try {
-            Util.classifierVariables.load(MvcAnalyzer.class
-                    .getResourceAsStream(Util.PROPERTIES_FILE_PATH));
+            Util.classifierVariables.load(MvcAnalyzer.class.getResourceAsStream(Util.PROPERTIES_FILE_PATH));
 
             Util.classifier = (Classifier) SerializationHelper.read(MvcAnalyzer.class
                     .getResourceAsStream(Util.CLASSIFIER_FILE_PATH));
@@ -134,7 +152,6 @@ public class Util {
             logger.log(Level.SEVERE, "Properties file: " + Util.PROPERTIES_FILE_PATH + " could not be read", e);
         }
     }
-
 
     /**
      * Get a property's values, specified in the MvcAnalyzer.classifierVariables
@@ -159,8 +176,9 @@ public class Util {
 
         return returnValue;
     }
-    
+
     /**
+     * Add an implementation package (either main or auxiliary) info.
      * 
      * @param currentPackages
      * @param currentPackage

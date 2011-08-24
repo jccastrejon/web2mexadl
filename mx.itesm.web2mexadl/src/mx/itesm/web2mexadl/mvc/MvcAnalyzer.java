@@ -1,3 +1,21 @@
+/*
+ * Copyright 2011 jccastrejon
+ *  
+ * This file is part of Web2MexADL.
+ *
+ * Web2MexADL is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * Web2MexADL is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with Web2MexADL.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package mx.itesm.web2mexadl.mvc;
 
 import java.io.File;
@@ -22,7 +40,10 @@ import weka.core.Instance;
 import weka.core.Instances;
 
 /**
- * Classify components in a web project according to the MVC pattern.
+ * The MvcAnalyzer class is responsible for the analysis of a web application
+ * according to the MVC pattern, and the generation of both a MexADL document
+ * and a SVG file representing the software architecture associated to the
+ * application.
  * 
  * @author jccastrejon
  * 
@@ -110,8 +131,8 @@ public class MvcAnalyzer {
     }
 
     /**
-     * Classify each class in the specified List into one of the layers of the
-     * MVC pattern.
+     * Generate the architecture document associated to the specified web
+     * application data.
      * 
      * @param dependencies
      *            List containing the dependencies for each class to classify.
@@ -317,6 +338,7 @@ public class MvcAnalyzer {
     }
 
     /**
+     * Export the given data into a MexADL architecture document.
      * 
      * @param modelPackages
      * @param controllerPackages

@@ -1,3 +1,21 @@
+/*
+ * Copyright 2011 jccastrejon
+ *  
+ * This file is part of Web2MexADL.
+ *
+ * Web2MexADL is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * Web2MexADL is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with Web2MexADL.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package mx.itesm.web2mexadl.cluster;
 
 import java.awt.Color;
@@ -39,6 +57,10 @@ import org.jdom.xpath.XPath;
 import weka.clusterers.EM;
 
 /**
+ * The ClusterAnalyzer class is responsible for the identification of the
+ * Clusters in which a web application is composed, and the generation of both a
+ * MexADL document and a SVG file representing the software architecture
+ * associated to the application.
  * 
  * @author jccastrejon
  * 
@@ -57,27 +79,27 @@ public class ClusterAnalyzer {
             "http://www.ics.uci.edu/pub/arch/xArch/types.xsd");
 
     /**
-     * 
+     * Path to the links elements in a XADL document.
      */
     private static XPath linksPath;
 
     /**
-     * 
+     * Path to the components elements in a XADL document.
      */
     private static XPath componentsPath;
 
     /**
-     * 
+     * Path to the connectors elements in a XADL document.
      */
     private static XPath connectorsPath;
 
     /**
-     * 
+     * Path to the componentTypes elements in a XADL document.
      */
     private static XPath componentTypesPath;
 
     /**
-     * 
+     * SAX builder.
      */
     private static SAXBuilder saxBuilder = new SAXBuilder();
 
@@ -94,14 +116,58 @@ public class ClusterAnalyzer {
     }
 
     /**
+     * Classify each class within the specified path into one of the identified
+     * Clusters of the application.
+     * 
+     * @param path
+     *            Path to the directory containing the classes.
+     * @param includeExternal
+     *            Should the external dependencies be exported.
+     * @param outputFile
+     *            File where to export the classification results.
+     * @return Map containing the classification results for each class.
+     * @throws Exception
+     *             If an Exception occurs during classification.
+     */
+    public static Map<String, Cluster> classifyClassesInDirectory(final File path, final boolean includeExternal,
+            final File outputFile) throws Exception {
+        Dataset[] clusters;
+        Map<String, Cluster> returnValue;
+        List<ClassDependencies> dependencies;
+        Map<String, Set<String>> internalPackages;
+
+        // Classify each class in the specified path
+        dependencies = DependencyAnalyzer.getDirectoryDependencies(path.getAbsolutePath(), new MvcDependencyCommand());
+        internalPackages = DependenciesUtil.getInternalPackages(dependencies,
+                Util.getPropertyValues(Util.Variable.Type.getVariableName()));
+
+        clusters = ClusterAnalyzer.generateClusters(dependencies);
+        returnValue = ClusterAnalyzer.generateArchitecture(clusters, internalPackages, outputFile.getParentFile());
+
+        if (outputFile != null) {
+            DependenciesUtil.exportDependenciesToSVG(dependencies, includeExternal, outputFile, internalPackages,
+                    new ClusterExportCommand(returnValue));
+        }
+
+        return returnValue;
+    }
+
+    /**
+     * Classify each class within the specified WAR file into one of the
+     * identified Clusters of the application.
      * 
      * @param file
+     *            Path to the WAR file.
      * @param includeExternal
+     *            Should the external dependencies be exported.
      * @param outputFile
+     *            File where to export the classification results.
+     * @return Map containing the classification results for each class.
      * @throws Exception
+     *             If an Exception occurs during classification.
      */
-    public static void classifyClassesInWar(final File file, final boolean includeExternal, final File outputFile)
-            throws Exception {
+    public static Map<String, Cluster> classifyClassesInWar(final File file, final boolean includeExternal,
+            final File outputFile) throws Exception {
         Dataset[] clusters;
         Map<String, Cluster> returnValue;
         List<ClassDependencies> dependencies;
@@ -126,39 +192,15 @@ public class ClusterAnalyzer {
             DependenciesUtil.exportDependenciesToSVG(dependencies, includeExternal, outputFile, internalPackages,
                     new ClusterExportCommand(returnValue));
         }
+
+        return returnValue;
     }
 
     /**
-     * 
-     * @param path
-     * @param includeExternal
-     * @param outputFile
-     * @throws Exception
-     */
-    public static void classifyClassesInDirectory(final File path, final boolean includeExternal, final File outputFile)
-            throws Exception {
-        Dataset[] clusters;
-        Map<String, Cluster> returnValue;
-        List<ClassDependencies> dependencies;
-        Map<String, Set<String>> internalPackages;
-
-        // Classify each class in the specified path
-        dependencies = DependencyAnalyzer.getDirectoryDependencies(path.getAbsolutePath(), new MvcDependencyCommand());
-        internalPackages = DependenciesUtil.getInternalPackages(dependencies,
-                Util.getPropertyValues(Util.Variable.Type.getVariableName()));
-
-        clusters = ClusterAnalyzer.generateClusters(dependencies);
-        returnValue = ClusterAnalyzer.generateArchitecture(clusters, internalPackages, outputFile.getParentFile());
-
-        if (outputFile != null) {
-            DependenciesUtil.exportDependenciesToSVG(dependencies, includeExternal, outputFile, internalPackages,
-                    new ClusterExportCommand(returnValue));
-        }
-    }
-
-    /**
+     * Generate a set of Clusters from the specified dependencies data.
      * 
      * @param dependencies
+     * @return
      */
     private static Dataset[] generateClusters(final List<ClassDependencies> dependencies) {
         Dataset dataset;
@@ -262,6 +304,8 @@ public class ClusterAnalyzer {
     }
 
     /**
+     * Generate the architecture document associated to the specified web
+     * application data.
      * 
      * @param clustersData
      * @param internalPackages
@@ -341,6 +385,7 @@ public class ClusterAnalyzer {
     }
 
     /**
+     * Export the given data into a MexADL architecture document.
      * 
      * @param outputDir
      * @param implementationPackages
@@ -446,14 +491,14 @@ public class ClusterAnalyzer {
             outputContents = StringUtils.replace(outputContents, "<!-- Cluster_" + i + " implementation -->",
                     implementationPackage.toString());
         }
-        
+
         // Write final architecture document
         FileUtils.deleteQuietly(outputFile);
         FileUtils.write(outputFile, outputContents);
     }
 
     /**
-     * Based on:
+     * Generate a random color, to identify Clusters. Based on:
      * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate
      * -an-aesthetically-pleasing-color-palette
      * 
