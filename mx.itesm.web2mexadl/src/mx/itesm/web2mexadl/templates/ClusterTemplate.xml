@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<instance:xArch xmlns:instance="http://www.ics.uci.edu/pub/arch/xArch/instance.xsd" xmlns:hints3="http://www.ics.uci.edu/pub/arch/xArch/hints3.xsd" xmlns:types="http://www.ics.uci.edu/pub/arch/xArch/types.xsd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ics.uci.edu/pub/arch/xArch/hints3.xsd http://www.ics.uci.edu/pub/arch/xArch/hints3.xsd http://www.ics.uci.edu/pub/arch/xArch/statecharts.xsd http://www.ics.uci.edu/pub/arch/xArch/statecharts.xsd http://www.ics.uci.edu/pub/arch/xArch/types.xsd http://www.ics.uci.edu/pub/arch/xArch/types.xsd http://www.ics.uci.edu/pub/arch/xArch/changesets.xsd http://www.ics.uci.edu/pub/arch/xArch/changesets.xsd">
+<instance:xArch xmlns:instance="http://www.ics.uci.edu/pub/arch/xArch/instance.xsd" xmlns:hints3="http://www.ics.uci.edu/pub/arch/xArch/hints3.xsd" xmlns:implementation="http://www.ics.uci.edu/pub/arch/xArch/implementation.xsd" xmlns:javaimplementation="http://www.ics.uci.edu/pub/arch/xArch/javaimplementation.xsd" xmlns:mexadl="http://mx.itesm/mexadl.xsd" xmlns:types="http://www.ics.uci.edu/pub/arch/xArch/types.xsd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mx.itesm/mexadl.xsd http://mx.itesm/mexadl.xsd http://www.ics.uci.edu/pub/arch/xArch/javaimplementation.xsd http://www.ics.uci.edu/pub/arch/xArch/javaimplementation.xsd http://www.ics.uci.edu/pub/arch/xArch/implementation.xsd http://www.ics.uci.edu/pub/arch/xArch/implementation.xsd http://www.ics.uci.edu/pub/arch/xArch/variants.xsd http://www.ics.uci.edu/pub/arch/xArch/variants.xsd http://www.ics.uci.edu/pub/arch/xArch/hints3.xsd http://www.ics.uci.edu/pub/arch/xArch/hints3.xsd http://www.ics.uci.edu/pub/arch/xArch/statecharts.xsd http://www.ics.uci.edu/pub/arch/xArch/statecharts.xsd http://www.ics.uci.edu/pub/arch/xArch/types.xsd http://www.ics.uci.edu/pub/arch/xArch/types.xsd http://www.ics.uci.edu/pub/arch/xArch/changesets.xsd http://www.ics.uci.edu/pub/arch/xArch/changesets.xsd">
     <types:archStructure types:id="archStructureac100001-f864473c-99edc93a-34570002" xsi:type="types:ArchStructure">
-        <types:description xsi:type="instance:Description">[New Structure]</types:description>
-        <types:component types:id="componentac100001-f864b6cd-e0081469-34570029" xsi:type="types:Component">
+        <types:description xsi:type="instance:Description">ClusteredArchitecture</types:description>
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f864b6cd-e0081469-34570029">
             <types:description xsi:type="instance:Description">Cluster_1</types:description>
             <types:interface types:id="interfaceac100001-f86d5bfa-d6521641-345707cc" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -12,8 +12,19 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9ca3fa9-f9cff1ae-9e4a18ea" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
-        <types:component types:id="componentac100001-f8650885-7befb6f8-34570081" xsi:type="types:Component">
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f8650885-7befb6f8-34570081">
             <types:description xsi:type="instance:Description">Cluster_3</types:description>
             <types:interface types:id="interfaceac100001-f8744875-cb49f037-34570b49" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -23,8 +34,19 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9ca32f7-56c9edc6-9e4a18e8" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
-        <types:component types:id="componentac100001-f8653043-9ab4bf26-345700a5" xsi:type="types:Component">
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f8653043-9ab4bf26-345700a5">
             <types:description xsi:type="instance:Description">Cluster_2</types:description>
             <types:interface types:id="interfaceac100001-f873b4a5-eaf4b09f-34570b06" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -34,8 +56,19 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">out</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9ca3962-1ad51eb9-9e4a18e9" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
-        <types:component types:id="componentac100001-f8654f55-7a251f98-345700c9" xsi:type="types:Component">
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f8654f55-7a251f98-345700c9">
             <types:description xsi:type="instance:Description">Cluster_4</types:description>
             <types:interface types:id="interfaceac100001-f874d6ee-2b976a59-34570ba6" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -45,8 +78,19 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9ca2cbd-6414568f-9e4a18e7" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
-        <types:component types:id="componentac100001-f86576b9-1579eddf-345700ed" xsi:type="types:Component">
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f86576b9-1579eddf-345700ed">
             <types:description xsi:type="instance:Description">Cluster_5</types:description>
             <types:interface types:id="interfaceac100001-f875556b-6b2b6f4c-34570be9" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -56,8 +100,19 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9ca260b-c3ed2d72-9e4a18e6" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
-        <types:component types:id="componentac100001-f8659982-3b948150-34570111" xsi:type="types:Component">
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f8659982-3b948150-34570111">
             <types:description xsi:type="instance:Description">Cluster_6</types:description>
             <types:interface types:id="interfaceac100001-f875f29a-34a0fe86-34570c2c" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -67,8 +122,19 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9ca1f41-f798f544-9e4a18e5" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
-        <types:component types:id="componentac100001-f865be6a-360531db-34570134" xsi:type="types:Component">
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f865be6a-360531db-34570134">
             <types:description xsi:type="instance:Description">Cluster_7</types:description>
             <types:interface types:id="interfaceac100001-f876ee4e-50892879-34570c6f" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -78,8 +144,19 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9ca187c-30df7d1b-9e4a18e4" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
-        <types:component types:id="componentac100001-f865ec24-9685573a-34570158" xsi:type="types:Component">
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f865ec24-9685573a-34570158">
             <types:description xsi:type="instance:Description">Cluster_8</types:description>
             <types:interface types:id="interfaceac100001-f877796a-d790bb27-34570cb2" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -89,8 +166,19 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9ca1122-247da109-9e4a18e3" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
-        <types:component types:id="componentac100001-f866390b-31028f37-3457017c" xsi:type="types:Component">
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f866390b-31028f37-3457017c">
             <types:description xsi:type="instance:Description">Cluster_9</types:description>
             <types:interface types:id="interfaceac100001-f877f5a2-4d0ac1ed-34570cf5" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -100,8 +188,19 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9ca041f-7ba39301-9e4a18e2" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
-        <types:component types:id="componentac100001-f8683314-687111b3-34570374" xsi:type="types:Component">
+        <types:component xsi:type="mexadl:MexComponent" types:id="componentac100001-f8683314-687111b3-34570374">
             <types:description xsi:type="instance:Description">Cluster_0</types:description>
             <types:interface types:id="interfaceac100001-f86d11f9-48efbbf1-34570784" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -111,6 +210,17 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:type xlink:href="#componentTypeffa80141-f9c97205-82195669-9e4a18e0" xsi:type="instance:XMLLink" xlink:type="simple"/>
+            <mexadl:maintainabilityMetrics xsi:type="mexadl:MaintainabilityMetrics">
+                <mexadl:modularityMetrics mexadl:depthInInheritanceTree="5" mexadl:numberOfChildren="2" xsi:type="mexadl:ModularityMetrics"/>
+                <mexadl:reusabilityMetrics mexadl:afferentCoupling="20" mexadl:lackOfCohesionOfMethods="20" xsi:type="mexadl:ReusabilityMetrics"/>
+                <mexadl:analyzabilityMetrics mexadl:cyclomaticComplexityPerUnit="200" mexadl:linesOfCode="20" mexadl:responseForClass="100" mexadl:weightedMethodComplexity="80" xsi:type="mexadl:AnalyzabilityMetrics"/>
+                <mexadl:modifiabilityMetrics mexadl:couplingBetweenObjects="10" mexadl:duplicatedBlocks="20" xsi:type="mexadl:ModifiabilityMetrics"/>
+                <mexadl:testabilityMetrics mexadl:numberOfPublicMethods="70" mexadl:unitTestCoverage="25" xsi:type="mexadl:TestabilityMetrics"/>
+            </mexadl:maintainabilityMetrics>
+            
+            
+            
         </types:component>
         <types:connector types:id="connectorac100001-f8668006-566e5a5d-345701d4" xsi:type="types:Connector">
             <types:description xsi:type="instance:Description">Connector_1</types:description>
@@ -3542,6 +3652,49 @@
             
             
             
+            
         </hints3:hintedElement>
     </hints3:renderingHints3>
+<types:archTypes xsi:type="types:ArchTypes">
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9c97205-82195669-9e4a18e0">
+            <types:description xsi:type="instance:Description">Cluster_0Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9ca041f-7ba39301-9e4a18e2">
+            <types:description xsi:type="instance:Description">Cluster9Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9ca1122-247da109-9e4a18e3">
+            <types:description xsi:type="instance:Description">Cluster8Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9ca187c-30df7d1b-9e4a18e4">
+            <types:description xsi:type="instance:Description">Cluster7Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9ca1f41-f798f544-9e4a18e5">
+            <types:description xsi:type="instance:Description">Cluster6Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9ca260b-c3ed2d72-9e4a18e6">
+            <types:description xsi:type="instance:Description">Cluster5Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9ca2cbd-6414568f-9e4a18e7">
+            <types:description xsi:type="instance:Description">Cluster4Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9ca32f7-56c9edc6-9e4a18e8">
+            <types:description xsi:type="instance:Description">Cluster3Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9ca3962-1ad51eb9-9e4a18e9">
+            <types:description xsi:type="instance:Description">Cluster2Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+        <types:componentType xsi:type="implementation:VariantComponentTypeImpl" types:id="componentTypeffa80141-f9ca3fa9-f9cff1ae-9e4a18ea">
+            <types:description xsi:type="instance:Description">Cluster1Type</types:description>
+            <implementation:implementation xsi:type="javaimplementation:JavaImplementation"/>
+        </types:componentType>
+    </types:archTypes>
 </instance:xArch>
