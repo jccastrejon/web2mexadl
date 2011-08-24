@@ -351,7 +351,7 @@ public class MvcAnalyzer {
         String outputContents;
 
         // Initial template
-        outputFile = new File(outputDir, "architecture.xml");
+        outputFile = new File(outputDir, "mvcArchitecture.xml");
         FileUtils.deleteQuietly(outputFile);
         FileUtils.copyInputStreamToFile(
                 MvcAnalyzer.class.getResourceAsStream("/mx/itesm/web2mexadl/templates/MvcTemplate.xml"), outputFile);

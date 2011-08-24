@@ -4,6 +4,7 @@ import java.io.File;
 
 import mx.itesm.web2mexadl.mvc.MvcAnalyzer;
 
+import org.apache.commons.lang3.text.WordUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -20,6 +21,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.internal.PluginAction;
 
 /**
+ * Action responsible for generating an architecture view based on the MVC
+ * pattern.
  * 
  * @author jccastrejon
  * 
@@ -82,8 +85,8 @@ public class MvcAction implements IObjectActionDelegate, Runnable {
         classificationCompleted = false;
         if (this.resource.getLocation() != null) {
             resourceFile = new File(this.resource.getLocation().toOSString());
-            imageFile = new File(resourceFile.getParentFile().getAbsolutePath() + "/" + this.resource.getName()
-                    + ".svg");
+            imageFile = new File(resourceFile.getParentFile().getAbsolutePath() + "/mvc"
+                    + WordUtils.capitalize(this.resource.getName()) + ".svg");
             // Classify
             try {
                 if (this.resource instanceof IProject) {

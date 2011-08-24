@@ -9,5 +9,9 @@
 	<classpathentry kind="lib" path="lib/junit.jar"/>
 	<classpathentry kind="lib" path="lib/weka.jar"/>
 	<classpathentry kind="lib" path="lib/mx.itesm.web2mexadl.jar" sourcepath="/mx.itesm.web2mexadl"/>
+	<classpathentry kind="lib" path="lib/javaml-0.1.6.jar"/>
+	<classpathentry kind="lib" path="lib/jaxen.jar"/>
+	<classpathentry kind="lib" path="lib/jdom.jar"/>
+	<classpathentry kind="lib" path="lib/xalan.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

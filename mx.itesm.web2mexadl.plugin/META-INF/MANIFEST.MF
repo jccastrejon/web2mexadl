@@ -16,4 +16,8 @@ Bundle-ClassPath: lib/asm-all-3.2.jar,
  lib/junit.jar,
  lib/weka.jar,
  .,
- lib/mx.itesm.web2mexadl.jar
+ lib/mx.itesm.web2mexadl.jar,
+ lib/javaml-0.1.6.jar,
+ lib/jaxen.jar,
+ lib/jdom.jar,
+ lib/xalan.jar
