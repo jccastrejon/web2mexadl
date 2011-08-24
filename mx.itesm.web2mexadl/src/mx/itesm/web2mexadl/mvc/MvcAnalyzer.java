@@ -332,7 +332,7 @@ public class MvcAnalyzer {
         outputFile = new File(outputDir, "architecture.xml");
         FileUtils.deleteQuietly(outputFile);
         FileUtils.copyInputStreamToFile(
-                MvcAnalyzer.class.getResourceAsStream("/mx/itesm/web2mexadl/templates/ArchitectureTemplate.xml"), outputFile);
+                MvcAnalyzer.class.getResourceAsStream("/mx/itesm/web2mexadl/templates/MvcTemplate.xml"), outputFile);
 
         // Update template with implementation packages
         outputContents = FileUtils.readFileToString(outputFile, "UTF-8");
